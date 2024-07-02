@@ -32,7 +32,6 @@ tableName: 'colaborador'
 Colaborador.belongsTo(Cidade, { foreignKey: 'CIDADE' });
 
 Colaborador.beforeCreate((colaborador, options) =>{
-    console.log("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
     return bcrypt.hash(colaborador.PASSWORDCOLABORADOR, 10)
     .then(hash =>{
         colaborador.PASSWORDCOLABORADOR = hash;

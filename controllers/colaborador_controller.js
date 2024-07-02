@@ -50,7 +50,8 @@ async function colaboradorLogin(req, res) {
                 );
                 res.json({
                     success: true, message: 'Autenticação realizada comsucesso!',
-                    token: token
+                    token: token,
+                    user: user
                 });
             } 
             else {
@@ -184,13 +185,13 @@ async function colaboradorUpdate(req, res) {
 
 async function colaboradorGetByEmail(req, res) {
     const { email } = req.params;
-    const data = await Colaborador.findAll({
-        where: { EMAIL: email }
+    const data = await Colaborador.findOne({
+        where: { EMAIL : email }
     })
     .then(function(data) {
         res.status(200).json({
             success: true,
-            data: data.IDCOLABORADOR
+            data: data
         });
     })
     .catch(error => {
