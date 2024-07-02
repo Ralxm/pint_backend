@@ -51,7 +51,7 @@ async function colaboradorLogin(req, res) {
                 res.json({
                     success: true, message: 'Autenticação realizada comsucesso!',
                     token: token,
-                    user: user
+                    id: user.IDCOLABORADOR
                 });
             } 
             else {
