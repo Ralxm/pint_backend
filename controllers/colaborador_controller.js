@@ -14,6 +14,7 @@ controller.colaboradorList = colaboradorList;
 controller.colaboradorGet = colaboradorGet;
 controller.colaboradorDelete = colaboradorDelete;
 controller.colaboradorUpdate = colaboradorUpdate;
+controller.colaboradorGetByEmail = colaboradorGetByEmail;
 
 async function colaboradorLogin(req, res) {
     if(req.body.email && req.body.password){
@@ -176,6 +177,26 @@ async function colaboradorUpdate(req, res) {
         res.status(500).json({
             success: false,
             message: "Erro ao atualizar o Colaborador",
+            error: error.message
+        });
+    });
+}
+
+async function colaboradorGetByEmail(req, res) {
+    const { email } = req.params;
+    const data = await Colaborador.findAll({
+        where: { EMAIL: email }
+    })
+    .then(function(data) {
+        res.status(200).json({
+            success: true,
+            data: data.IDCOLABORADOR
+        });
+    })
+    .catch(error => {
+        res.status(500).json({
+            success: false,
+            message: "Erro ao encontrar o Colaborador",
             error: error.message
         });
     });
