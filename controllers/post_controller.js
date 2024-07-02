@@ -66,6 +66,7 @@ async function postList(req, res){
 async function postGet(req, res){
     const { id } = req.params;
     const data = await Post.findAll({
+        include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador],
         where: { IDPUBLICACAO: id }
     })
     .then(function(data) {
