@@ -38,15 +38,12 @@ async function colaboradorLogin(req, res) {
     else {
         if (req.body.email && req.body.password && user) {
             const isMatch = bcrypt.compareSync(password, user.PASSWORDCOLABORADOR);
-            console.log(password)
-            console.log(user.PASSWORDCOLABORADOR)
-            console.log(isMatch)
             if (req.body.email === user.EMAIL) {
                 let token = jwt.sign({
                     EMAIL: req.body.email
                     },
                     config.jwtSecret,
-                    {expiresIn: '1h'}
+                    {expiresIn: '1000h'}
                 );
                 res.json({
                     success: true, message: 'Autenticação realizada comsucesso!',
@@ -116,7 +113,7 @@ async function colaboradorList(req, res) {
 
 async function colaboradorGet(req, res) {
     const { id } = req.params;
-    const data = await Colaborador.findAll({
+    const data = await Colaborador.findOne({
         where: { IDCOLABORADOR: id }
     })
     .then(function(data) {
