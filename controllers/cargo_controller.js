@@ -47,9 +47,9 @@ async function cargoList(req, res) {
 }
 
 async function cargoGet(req, res) {
-    const { IDCARGO } = req.params;
+    const { id } = req.params;
     const data = await Cargo.findAll({
-        where: { IDCARGO: IDCARGO }
+        where: { IDCARGO: id }
     })
     .then(function(data) {
         res.status(200).json({

@@ -51,9 +51,9 @@ async function comentarioList(req, res) {
 }
 
 async function comentarioGet(req, res) {
-    const { IDCOMENTARIO } = req.params;
+    const { id } = req.params;
     const data = await Comentario.findAll({
-        where: { IDCOMENTARIO: IDCOMENTARIO }
+        where: { IDCOMENTARIO: id }
     })
     .then(function(data) {
         res.status(200).json({

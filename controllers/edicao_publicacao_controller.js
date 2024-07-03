@@ -54,9 +54,9 @@ async function edicaoPublicacaoList(req, res) {
 }
 
 async function edicaoPublicacaoGet(req, res) {
-    const { IDEDICAOPUBLICACAO } = req.params;
+    const { id } = req.params;
     const data = await Edicao_Publicacao.findAll({
-        where: { IDEDICAOPUBLICACAO: IDEDICAOPUBLICACAO }
+        where: { IDEDICAOPUBLICACAO: id }
     })
     .then(function(data) {
         res.status(200).json({

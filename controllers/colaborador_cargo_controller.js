@@ -49,9 +49,9 @@ async function colaboradorCargoList(req, res) {
 }
 
 async function colaboradorCargoGet(req, res) {
-    const { IDCOLABORADORCARGO } = req.params;
+    const { id } = req.params;
     const data = await Colaborador_Cargo.findAll({
-        where: { IDCOLABORADORCARGO: IDCOLABORADORCARGO }
+        where: { IDCOLABORADORCARGO: id }
     })
     .then(function(data) {
         res.status(200).json({

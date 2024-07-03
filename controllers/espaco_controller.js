@@ -49,9 +49,9 @@ async function espacoList(req, res) {
 }
 
 async function espacoGet(req, res) {
-    const { IDESPACO } = req.params;
+    const { id } = req.params;
     const data = await Espaco.findAll({
-        where: { IDESPACO: IDESPACO }
+        where: { IDESPACO: id }
     })
     .then(function() {
         res.status(200).json({

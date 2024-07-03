@@ -48,10 +48,10 @@ async function aprovacaoList(req, res){
 }
 
 async function aprovacaoGet(req, res){
-    const { IDAPROVACAO } = req.params;
+    const { id } = req.params;
     const data = await Aprovacao.findAll({
         include: [Colaborador],
-        where: { IDAPROVACAO: IDAPROVACAO }
+        where: { IDAPROVACAO: id }
     })
     .then(function(data) {
         res.status(200).json({

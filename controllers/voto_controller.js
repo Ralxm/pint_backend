@@ -49,9 +49,9 @@ async function votoList(req, res){
 }
 
 async function votoGet(req, res){
-    const { IDVOTO } = req.params;
+    const { id } = req.params;
     const data = await Voto.findAll({
-        where: { IDVOTO: IDVOTO }
+        where: { IDVOTO: id }
     })
     .then(function(data) {
         res.status(200).json({

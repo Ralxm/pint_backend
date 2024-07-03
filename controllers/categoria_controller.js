@@ -47,9 +47,9 @@ async function categoriaList(req, res) {
 }
 
 async function categoriaGet(req, res) {
-    const { IDCATEGORIA } = req.params;
+    const { id } = req.params;
     const data = await Categoria.findAll({
-        where: { IDCATEGORIA: IDCATEGORIA }
+        where: { IDCATEGORIA: id }
     })
     .then(function(data) {
         res.status(200).json({

@@ -47,8 +47,8 @@ async function permissoesList(req, res) {
 }
 
 async function permissoesGet(req, res) {
-    const { IDPERMISSAO } = req.params;
-    const data = await Evento.findAll()
+    const { id } = req.params;
+    const data = await Evento.findAll({where : {IDPERMISSAO : id}})
     .then(function(data) {
         res.status(200).json({
             success: true,

@@ -47,8 +47,8 @@ async function eventoList(req, res) {
 }
 
 async function eventoGet(req, res) {
-    const { IDEVENTO } = req.params;
-    const data = await Evento.findAll()
+    const { id } = req.params;
+    const data = await Evento.findAll({where: {IDEVENTO: id}})
     .then(function(data) {
         res.status(200).json({
             success: true,

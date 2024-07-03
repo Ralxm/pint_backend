@@ -52,9 +52,9 @@ async function edicaoComentarioList(req, res) {
 }
 
 async function edicaoComentarioGet(req, res) {
-    const { IDEDICAOCOMENTARIO } = req.params;
+    const { id } = req.params;
     const data = await Edicao_Comentario.findAll({
-        where: { IDEDICAOCOMENTARIO: IDEDICAOCOMENTARIO }
+        where: { IDEDICAOCOMENTARIO: id }
     })
     .then(function(data) {
         res.status(200).json({

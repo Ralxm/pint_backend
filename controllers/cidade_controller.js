@@ -47,9 +47,9 @@ async function cidadeList(req, res) {
 }
 
 async function cidadeGet(req, res) {
-    const { IDCIDADE } = req.params;
+    const { id } = req.params;
     const data = await Cidade.findAll({
-        where: { IDCIDADE: IDCIDADE }
+        where: { IDCIDADE: id }
     })
     .then(function(data) {
         res.status(200).json({

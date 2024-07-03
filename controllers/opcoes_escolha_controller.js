@@ -50,8 +50,8 @@ async function opcaoEscolhaList(req, res) {
 }
 
 async function opcaoEscolhaGet(req, res) {
-    const { IDOPCAO } = req.params;
-    const data = await Evento.findAll()
+    const { id } = req.params;
+    const data = await Evento.findAll({where : {IDOPCAO: id}})
     .then(function(data) {
         res.status(200).json({
             success: true,

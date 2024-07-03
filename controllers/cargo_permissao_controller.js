@@ -50,9 +50,9 @@ async function cargoPermissaoList(req, res) {
 }
 
 async function cargoPermissaoGet(req, res) {
-    const { IDCARGOPERMISSAO } = req.params;
+    const { id } = req.params;
     const data = await Cargo_Permissao.findAll({
-        where: { IDCARGOPERMISSAO: IDCARGOPERMISSAO }
+        where: { IDCARGOPERMISSAO: id }
     })
     .then(function(data) {
         res.status(200).json({

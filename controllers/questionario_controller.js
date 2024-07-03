@@ -47,9 +47,9 @@ async function questionarioList(req, res){
 }
 
 async function questionarioGet(req, res){
-    const { IDQUESTIONARIO } = req.params;
+    const { id } = req.params;
     const data = await Questionario.findAll({
-        where: { IDQUESTIONARIO: IDQUESTIONARIO }
+        where: { IDQUESTIONARIO: id }
     })
     .then(function(data) {
         res.status(200).json({
