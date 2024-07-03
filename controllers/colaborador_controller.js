@@ -114,7 +114,7 @@ async function colaboradorList(req, res) {
 async function colaboradorGet(req, res) {
     const { id } = req.params;
     const data = await Colaborador.findOne({
-        where: { IDCOLABORADOR: id }
+        where: { IDCOLABORADOR: id }, include: [Cidade]
     })
     .then(function(data) {
         res.status(200).json({
