@@ -7,7 +7,6 @@ let checkToken = (req, res, next) => {
     }
 
     let token = req.headers['x-access-token'] || req.headers['authorization'];
-    console.log('aaaaa ' + token)
     if(token){
         if(token.startsWith('Bearer ')){
             token = token.slice(7, token.length); 

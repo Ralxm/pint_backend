@@ -4,7 +4,7 @@ const middleware = require('../middleware')
 
 const controller = require('../controllers/colaborador_controller');
 
-router.post('/login', controller.colaboradorLogin);
+router.post('/login', middleware.checkToken, controller.colaboradorLogin);
 router.post('/create', controller.colaboradorCreate);
 router.get('/list', middleware.checkToken, controller.colaboradorList);
 router.get('/get/:id', middleware.checkToken, controller.colaboradorGet);
