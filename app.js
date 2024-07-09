@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const sequelize = require('./model/database');
+const Sequelize = require('sequelize')
 const middleware = require('./middleware')
 
 const Aprovacao = require('./routes/aprovacao_routes');
@@ -70,6 +71,40 @@ async function syncDatabase() {
         await _Evento.sync();
         await _Post.sync();
         await _Edicao_publicacao.sync();
+
+        let id;
+        const cidadeCount = await _Cidade.count();
+        if(cidadeCount == 0){
+            const cidade = await _Cidade.create({
+                NOME: 'Lisboa'
+            });
+            id = cidade.IDCIDADE;
+        }
+        
+        const colaboradorCount = await _Colaborador.count();
+        if(colaboradorCount == 0){
+            const colaborador = await _Colaborador.create({
+                EMAIL: '123',
+                PASSWORDCOLABORADOR: "123",
+                NOME: 'Administrador',
+                TELEMOVEL: '123456789',
+                CIDADE: id,
+                DATANASCIMENTO: '1990-01-01',
+                DATAREGISTO: new Date(),
+                ULTIMOLOGIN: new Date()
+            });
+
+            const cargo = await _Cargo.create({
+                NOME: 'Administrador',
+                DESCRICAO: 'Utilizador com permissões totais'
+            })
+
+            const colaborador_cargo = await _Colaborador_cargo.create({
+                IDCARGO: cargo.IDCARGO,
+                IDCOLABROADOR: colaborador.IDCOLABROADOR
+            })
+        }
+
         console.log('All models were synchronized successfully.');
     } catch (error) {
         console.error('Unable to connect to the database:', error);

@@ -43,8 +43,10 @@ async function colaboradorLogin(req, res) {
                     EMAIL: req.body.email
                     },
                     config.jwtSecret,
-                    {expiresIn: '1000h'}
+                    {expiresIn: '10000h'}
                 );
+                user.ULTIMOLOGIN = new Date();
+                await user.save();
                 res.json({
                     success: true, message: 'Autenticação realizada comsucesso!',
                     token: token,

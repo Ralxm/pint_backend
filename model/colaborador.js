@@ -41,4 +41,14 @@ Colaborador.beforeCreate((colaborador, options) =>{
     })
 })
 
+Colaborador.afterUpdate((colaborador, options) => {
+    return bcrypt.hash(colaborador.PASSWORDCOLABORADOR, 10)
+        .then(hash => {
+            colaborador.PASSWORDCOLABORADOR = hash;
+        })
+        .catch(err => {
+            throw new Error();
+        });
+});
+
 module.exports = Colaborador;
