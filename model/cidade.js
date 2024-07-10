@@ -14,6 +14,4 @@ timestamps: false,
 tableName: 'cidade',
 });
 
-
-
 module.exports = Cidade;

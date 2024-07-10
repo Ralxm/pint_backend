@@ -14,6 +14,4 @@ const Cargo = sequelize.define('cargo', {
     tableName: 'cargo'
 });
 
-
-
 module.exports = Cargo;

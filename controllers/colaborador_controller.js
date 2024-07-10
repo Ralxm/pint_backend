@@ -6,8 +6,6 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../model/database');
 const config = require('../config')
 
-sequelize.sync()
-
 controller.colaboradorLogin = colaboradorLogin;
 controller.colaboradorCreate = colaboradorCreate;
 controller.colaboradorList = colaboradorList;

@@ -14,6 +14,4 @@ const Permissoes = sequelize.define('permissoes', {
     tableName: 'permissoes'
 });
 
-
-
 module.exports = Permissoes;
