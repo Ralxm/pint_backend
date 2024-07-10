@@ -76,7 +76,7 @@ async function colaboradorCreate(req, res) {
         CIDADE: CIDADE,
         DATANASCIMENTO: DATANASCIMENTO,
         DATAREGISTO: DATAREGISTO,
-        ULTIMOLOGIN:ULTIMOLOGIN,
+        ULTIMOLOGIN: ULTIMOLOGIN,
     })
     .then(function(data){
         res.status(200).json({

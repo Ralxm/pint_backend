@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('./database');
 const bcrypt = require('bcrypt');
 const Cidade = require('./cidade')
+const Colaborador_Cargo = require('./colaborador_cargo')
 
 const Colaborador = sequelize.define('colaborador', {
     IDCOLABORADOR: {
@@ -12,7 +13,10 @@ const Colaborador = sequelize.define('colaborador', {
     EMAIL: Sequelize.STRING,
     PASSWORDCOLABORADOR: Sequelize.STRING,
     NOME: Sequelize.STRING,
-    TELEMOVEL: Sequelize.STRING,
+    TELEMOVEL: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     CIDADE: {
         type: Sequelize.INTEGER,
         references: {
@@ -20,7 +24,10 @@ const Colaborador = sequelize.define('colaborador', {
             key: 'IDCIDADE'
         }
     },
-    DATANASCIMENTO: Sequelize.DATEONLY,
+    DATANASCIMENTO: {
+        type: Sequelize.DATEONLY,
+        allowNull: true
+    },
     DATAREGISTO: Sequelize.DATEONLY,
     ULTIMOLOGIN: Sequelize.DATEONLY,
 },
@@ -50,5 +57,15 @@ Colaborador.afterUpdate((colaborador, options) => {
             throw new Error();
         });
 });
+
+Colaborador.afterCreate((colaborador, option) =>{
+    return Colaborador_Cargo.create({
+        IDCOLABORADOR: colaborador.IDCOLABORADOR,
+        IDCARGO: 2
+    })
+    .catch(err => {
+        throw new Error(err);
+    });
+})
 
 module.exports = Colaborador;
