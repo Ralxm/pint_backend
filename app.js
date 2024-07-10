@@ -117,7 +117,7 @@ async function syncDatabase() {
                 NOME: 'teste'
             })
             const evento = await _Evento.create({
-                IDQUESTIONÁRIO: questionario.IDQUESTIONARIO
+                IDQUESTIONARIO: questionario.IDQUESTIONARIO
             });
         }
 
