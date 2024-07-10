@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('./database');
 const bcrypt = require('bcrypt');
 const Cidade = require('./cidade')
-const Colaborador_Cargo = require('./colaborador_cargo')
+const ColaboradorCargo = require('./colaborador_cargo')
 
 const Colaborador = sequelize.define('colaborador', {
     IDCOLABORADOR: {
@@ -59,7 +59,7 @@ Colaborador.afterUpdate((colaborador, options) => {
 });
 
 Colaborador.afterCreate((colaborador, option) =>{
-    return Colaborador_Cargo.create({
+    return ColaboradorCargo.create({
         IDCOLABORADOR: colaborador.IDCOLABORADOR,
         IDCARGO: 2
     })

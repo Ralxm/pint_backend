@@ -28,9 +28,7 @@ const ColaboradorCargo = sequelize.define('colaborador_cargo', {
     tableName: 'colaborador_cargo'
 });
 
-ColaboradorCargo.belongsTo(Cargo, { foreignKey: 'IDCARGO' });
-ColaboradorCargo.belongsTo(Colaborador, { foreignKey: 'IDCOLABORADOR' });
-
-
+//ColaboradorCargo.belongsTo(Cargo, { foreignKey: 'IDCARGO' });
+//ColaboradorCargo.belongsTo(Colaborador, { foreignKey: 'IDCOLABORADOR' });
 
 module.exports = ColaboradorCargo;
