@@ -114,7 +114,7 @@ async function syncDatabase() {
         const eventoCount = await _Evento.count();
         if(eventoCount == 0){
             const questionario = await _Questionario.create({
-                NOME: 'teste'
+                NOME: 'teste inicio'
             })
             const evento = await _Evento.create({
                 IDQUESTIONARIO: questionario.IDQUESTIONARIO
