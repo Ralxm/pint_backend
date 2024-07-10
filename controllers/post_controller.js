@@ -1,3 +1,4 @@
+const multer = require('multer');
 var Colaborador = require('../model/colaborador')
 var Cidade= require('../model/cidade')
 var Aprovacao = require('../model/aprovacao')
@@ -13,8 +14,55 @@ controller.postGet = postGet;
 controller.postDelete = postDelete;
 controller.postUpdate = postUpdate;
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage }).single('IMAGEM');
+
 async function postCreate(req, res){
-    const { CIDADE, APROVACAO, COLABORADOR, CATEGORIA, SUBCATEGORIA, ESPACO, EVENTO, DATAPUBLICACAO, DATAULTIMAATIVIDADE, TITULO, TEXTO, RATING, ALBUM } = req.body;
+    upload(req, res, async (err) => {
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: "Erro ao fazer upload da imagem",
+                error: err.message
+            });
+        }
+
+        const {
+            CIDADE, APROVACAO, COLABORADOR, CATEGORIA, SUBCATEGORIA, ESPACO, EVENTO,
+            DATAPUBLICACAO, DATAULTIMAATIVIDADE, TITULO, TEXTO, RATING
+        } = req.body;
+
+        try {
+            const data = await Post.create({
+                CIDADE: CIDADE,
+                APROVACAO: APROVACAO,
+                COLABORADOR: COLABORADOR,
+                CATEGORIA: CATEGORIA,
+                SUBCATEGORIA: SUBCATEGORIA,
+                ESPACO: ESPACO,
+                EVENTO: EVENTO,
+                DATAPUBLICACAO: DATAPUBLICACAO,
+                DATAULTIMAATIVIDADE: DATAULTIMAATIVIDADE,
+                TITULO: TITULO,
+                TEXTO: TEXTO,
+                RATING: RATING,
+                IMAGEM: req.file.buffer // Store binary data of the image
+            });
+
+            res.status(200).json({
+                success: true,
+                message: "Post criado",
+                data: data
+            });
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                message: "Erro ao criar o post",
+                error: error.message
+            });
+        }
+    });
+    /*const { CIDADE, APROVACAO, COLABORADOR, CATEGORIA, SUBCATEGORIA, ESPACO, EVENTO, DATAPUBLICACAO, DATAULTIMAATIVIDADE, TITULO, TEXTO, RATING, IMAGEM } = req.body;
     const data = await Post.create({
         CIDADE: CIDADE,
         APROVACAO: APROVACAO,
@@ -28,7 +76,7 @@ async function postCreate(req, res){
         TITULO: TITULO,
         TEXTO: TEXTO,
         RATING: RATING,
-        ALBUM: ALBUM,
+        IMAGEM: IMAGEM,
     })
     .then(function(data){
         res.status(200).json({
@@ -43,7 +91,7 @@ async function postCreate(req, res){
             message: "Erro a criar o Post",
             error: error.message
         })
-    })
+    })*/
 }
 
 async function postList(req, res){
@@ -106,7 +154,7 @@ async function postDelete(req, res){
 
 async function postUpdate(req, res){
     const { id } = req.params;
-    const { CIDADE, APROVACAO, COLABORADOR, CATEGORIA, SUBCATEGORIA, ESPACO, EVENTO, DATAPUBLICACAO, DATAULTIMAATIVIDADE, TITULO, TEXTO, RATING, ALBUM } = req.body;
+    const { CIDADE, APROVACAO, COLABORADOR, CATEGORIA, SUBCATEGORIA, ESPACO, EVENTO, DATAPUBLICACAO, DATAULTIMAATIVIDADE, TITULO, TEXTO, RATING} = req.body;
     const data = await Post.update({
         CIDADE: CIDADE,
         APROVACAO: APROVACAO,
@@ -120,7 +168,6 @@ async function postUpdate(req, res){
         TITULO: TITULO,
         TEXTO: TEXTO,
         RATING: RATING,
-        ALBUM: ALBUM,
     },{ where: { IDPUBLICACAO: id}})
     .then(function(data) {
         res.status(200).json

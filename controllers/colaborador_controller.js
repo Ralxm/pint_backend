@@ -43,7 +43,7 @@ async function colaboradorLogin(req, res) {
                     EMAIL: req.body.email
                     },
                     config.jwtSecret,
-                    {expiresIn: '10000h'}
+                    {expiresIn: '1h'}
                 );
                 user.ULTIMOLOGIN = new Date();
                 await user.save();

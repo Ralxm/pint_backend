@@ -70,7 +70,7 @@ const Post = sequelize.define('post', {
     TITULO: Sequelize.STRING,
     TEXTO: Sequelize.STRING,
     RATING: Sequelize.FLOAT,
-    ALBUM: Sequelize.STRING
+    IMAGEM: Sequelize.BLOB('long')
 },
 {
 timestamps: false,
