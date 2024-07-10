@@ -46,7 +46,8 @@ async function colaboradorLogin(req, res) {
                 user.ULTIMOLOGIN = new Date();
                 await user.save();
                 res.json({
-                    success: true, message: 'Autenticação realizada comsucesso!',
+                    success: true,
+                    message: 'Autenticação realizada comsucesso!',
                     token: token,
                     id: user.IDCOLABORADOR
                 });

@@ -47,6 +47,12 @@ const _Edicao_publicacao = require('./model/edicao_publicacao');
 
 app.set('port', process.env.PORT || 3001);
 
+//_Colaborador_cargo.belongsTo(Cargo, { foreignKey: 'IDCARGO' });
+//_Colaborador_cargo.belongsTo(Colaborador, { foreignKey: 'IDCOLABORADOR' });
+
+//Cargo.hasMany(_Colaborador_cargo, { foreignKey: 'IDCARGO' });
+//Colaborador.hasMany(_Colaborador_cargo, { foreignKey: 'IDCOLABORADOR' });
+
 async function syncDatabase() {
     try {
         await sequelize.authenticate();
@@ -101,8 +107,26 @@ async function syncDatabase() {
 
             const colaborador_cargo = await _Colaborador_cargo.create({
                 IDCARGO: cargo.IDCARGO,
-                IDCOLABROADOR: colaborador.IDCOLABROADOR
+                IDCOLABROADOR: colaborador.IDCOLABORADOR
             })
+        }
+
+        const eventoCount = await _Evento.count();
+        if(eventoCount == 0){
+            const questionario = await _Questionario.creta({
+                NOME: 'teste'
+            })
+            const evento = await _Evento.create({
+                IDQUESTIONÁRIO: questionario.IDQUESTIONARIO
+            });
+        }
+
+        const espacoCount = await _Espaco.count();
+        if(espacoCount == 0){
+            const espaco = await _Espaco.create({
+                COORDENADAS: 'teste',
+                WEBSITE: 'teste'
+            });
         }
 
         console.log('All models were synchronized successfully.');
