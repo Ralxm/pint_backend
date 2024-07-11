@@ -98,7 +98,7 @@ Post.afterCreate((post, option) =>{
         tipo = 'Criação de espaço com ID: ' + post.ESPACO;
     }
     return Auditlog.create({
-        IDCONTA: post.colaborador.IDCOLABORADOR,
+        IDCONTA: post.COLABORADOR,
         TIPOATIVIDADE: tipo,
         DATA : new Date(),
         DESCRICAO : 'Utilizador ID: ' + post.COLABORADOR + ' criou uma publicação'
