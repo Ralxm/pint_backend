@@ -60,7 +60,7 @@ const Post = sequelize.define('post', {
     EVENTO: {
         type: Sequelize.INTEGER,
         allowNull: true,
-        references: {
+        references: {a
             model: 'evento',
             key: 'IDEVENTO'
         }
@@ -74,6 +74,7 @@ const Post = sequelize.define('post', {
         type: Sequelize.BLOB('long'),
         allowNull: true
     }
+},
 {
 timestamps: false,
 tableName: 'post'
@@ -86,7 +87,5 @@ Post.belongsTo(Categoria, { foreignKey: 'CATEGORIA' });
 Post.belongsTo(Subcategoria, { foreignKey: 'SUBCATEGORIA' });
 Post.belongsTo(Espaco, { foreignKey: 'ESPACO' });
 Post.belongsTo(Evento, { foreignKey: 'EVENTO' });
-
-
 
 module.exports = Post;
