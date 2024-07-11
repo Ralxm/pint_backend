@@ -7,6 +7,7 @@ const Categoria = require('./categoria');
 const Subcategoria = require('./subcategoria');
 const Espaco = require('./espaco');
 const Evento = require('./evento');
+const Auditlog = require('./auditlog')
 
 const Post = sequelize.define('post', {
     IDPUBLICACAO: {
@@ -87,5 +88,24 @@ Post.belongsTo(Categoria, { foreignKey: 'CATEGORIA' });
 Post.belongsTo(Subcategoria, { foreignKey: 'SUBCATEGORIA' });
 Post.belongsTo(Espaco, { foreignKey: 'ESPACO' });
 Post.belongsTo(Evento, { foreignKey: 'EVENTO' });
+
+Post.afterCreate((post, option) =>{
+    let tipo;
+    if(post.ESPACO == 1){
+        tipo = 'Criação de evento com ID: ' + post.EVENTO;
+    }
+    else if(post.EVENTO == 1){
+        tipo = 'Criação de espaço com ID: ' + post.ESPACO;
+    }
+    return Auditlog.create({
+        IDCONTA: post.colaborador.IDCOLABORADOR,
+        TIPOATIVIDADE: tipo,
+        DATA : new Date(),
+        DESCRICAO : 'Utilizador ID: ' + post.COLABORADOR + ' criou uma publicação'
+    })
+    .catch(err => {
+        throw new Error(err);
+    });
+})
 
 module.exports = Post;
