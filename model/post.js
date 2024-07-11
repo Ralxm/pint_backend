@@ -70,8 +70,10 @@ const Post = sequelize.define('post', {
     TITULO: Sequelize.STRING,
     TEXTO: Sequelize.STRING,
     RATING: Sequelize.FLOAT,
-    IMAGEM: Sequelize.BLOB('long')
-},
+    IMAGEM: {
+        type: Sequelize.BLOB('long'),
+        allowNull: true
+    }
 {
 timestamps: false,
 tableName: 'post'
