@@ -60,7 +60,7 @@ const Post = sequelize.define('post', {
     EVENTO: {
         type: Sequelize.INTEGER,
         allowNull: true,
-        references: {a
+        references: {
             model: 'evento',
             key: 'IDEVENTO'
         }
