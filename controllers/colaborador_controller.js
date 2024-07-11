@@ -49,7 +49,8 @@ async function colaboradorLogin(req, res) {
                     success: true,
                     message: 'Autenticação realizada comsucesso!',
                     token: token,
-                    id: user.IDCOLABORADOR
+                    id: user.IDCOLABORADOR,
+                    cidade: user.CIDADE
                 });
             } 
             else {
