@@ -13,6 +13,7 @@ controller.postList = postList;
 controller.postGet = postGet;
 controller.postDelete = postDelete;
 controller.postUpdate = postUpdate;
+controller.postListByCidade = postListByCidade;
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage }).single('IMAGEM');
@@ -183,6 +184,26 @@ async function postUpdate(req, res){
             error: error.message
         });
     })
+}
+
+async function postListByCidade(req, res){
+    const { id } = req.params;
+    const data = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador], order: ['IDPUBLICACAO'],
+        where: {CIDADE : id}
+    })
+    .then(function(data) {
+        res.status(200).json({
+            success: true,
+            data: data
+        });
+    })
+    .catch(error => {
+        res.status(500).json({
+            success: false,
+            message: "Erro a listar os posts",
+            error: error.message
+        });
+    });
 }
 
 module.exports = controller;
