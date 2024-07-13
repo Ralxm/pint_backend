@@ -115,7 +115,7 @@ async function syncDatabase() {
         if(colaboradorCargoCount == 0){
             const colaborador_cargo = await _Colaborador_cargo.create({
                 IDCARGO: cargo.IDCARGO,
-                IDCOLABROADOR: 1
+                IDCOLABORADOR: colaborador.IDCOLABORADOR
             })
         }
         
