@@ -9,6 +9,6 @@ router.get('/get/:id', controller.postGet);
 router.put('/delete/:id', controller.postDelete);
 router.put('/update/:id', controller.postUpdate);
 
-router.get('/listByCidade/:id', controller.postListByCidade);
+router.get('/listByCidade/:id', controller.postListByCidad);
 
 module.exports = router;
