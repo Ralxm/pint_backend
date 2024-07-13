@@ -46,7 +46,7 @@ async function postCreate(req, res){
                 TITULO: TITULO,
                 TEXTO: TEXTO,
                 RATING: RATING,
-                IMAGEM: req.file.buffer // Store binary data of the image
+                IMAGEM: req.file.buffer
             });
 
             res.status(200).json({
