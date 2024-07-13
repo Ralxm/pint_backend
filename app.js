@@ -87,9 +87,10 @@ async function syncDatabase() {
             id = cidade.IDCIDADE;
         }
         
+        let colaborador;
         const colaboradorCount = await _Colaborador.count();
         if(colaboradorCount == 0){
-            const colaborador = await _Colaborador.create({
+            colaborador = await _Colaborador.create({
                 EMAIL: '123',
                 PASSWORDCOLABORADOR: "123",
                 NOME: 'Administrador',
@@ -99,18 +100,25 @@ async function syncDatabase() {
                 DATAREGISTO: new Date(),
                 ULTIMOLOGIN: new Date()
             });
+        }
 
-            const cargo = await _Cargo.create({
+        let cargo;
+        const cargoCount = await _Cargo.count();
+        if(cargoCount == 0){
+            cargo = await _Cargo.create({
                 NOME: 'Administrador',
                 DESCRICAO: 'Utilizador com permissões totais'
             })
+        }
 
+        const colaboradorCargoCount = await _Colaborador_cargo.count();
+        if(colaboradorCargoCount == 0){
             const colaborador_cargo = await _Colaborador_cargo.create({
                 IDCARGO: cargo.IDCARGO,
                 IDCOLABROADOR: colaborador.IDCOLABORADOR
             })
         }
-
+        
         const eventoCount = await _Evento.count();
         if(eventoCount == 0){
             const questionario = await _Questionario.create({
