@@ -46,7 +46,7 @@ async function colaboradorLogin(req, res) {
                     {expiresIn: '1h'}
                 );
                 user.ULTIMOLOGIN = new Date();
-                let cargo = Cargo.findOne({where : {IDCARGO: ColaboradorCargo.findOne({where: {IDCOLABORADOR: user.IDCOLABORADOR}}).IDCARGO}})
+                let cargo = await Cargo.findOne({where : {IDCARGO: await ColaboradorCargo.findOne({where: {IDCOLABORADOR: user.IDCOLABORADOR}}).IDCARGO}})
                 await user.save();
                 res.json({
                     success: true,
