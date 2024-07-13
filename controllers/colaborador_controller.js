@@ -38,6 +38,7 @@ async function colaboradorLogin(req, res) {
     else {
         if (req.body.email && req.body.password && user) {
             const isMatch = bcrypt.compareSync(password, user.PASSWORDCOLABORADOR);
+            console.log(isMatch);
             if (req.body.email === user.EMAIL) {
                 let token = jwt.sign({
                     EMAIL: req.body.email

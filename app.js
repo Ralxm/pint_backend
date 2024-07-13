@@ -47,12 +47,6 @@ const _Edicao_publicacao = require('./model/edicao_publicacao');
 
 app.set('port', process.env.PORT || 3001);
 
-//_Colaborador_cargo.belongsTo(Cargo, { foreignKey: 'IDCARGO' });
-//_Colaborador_cargo.belongsTo(Colaborador, { foreignKey: 'IDCOLABORADOR' });
-
-//Cargo.hasMany(_Colaborador_cargo, { foreignKey: 'IDCARGO' });
-//Colaborador.hasMany(_Colaborador_cargo, { foreignKey: 'IDCOLABORADOR' });
-
 async function syncDatabase() {
     try {
         await sequelize.authenticate();
