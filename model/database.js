@@ -21,8 +21,8 @@ const sequelize = new Sequelize(
         dialect: 'postgres',
         dialectOptions: {
         ssl: {
-            require: true, // This will enforce the use of SSL
-            rejectUnauthorized: false // This option bypasses hostname matching, certificate expiration and not yet valid checks.
+            require: true,
+            rejectUnauthorized: false
         }
   }
     }
