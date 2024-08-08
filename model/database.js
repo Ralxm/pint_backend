@@ -13,10 +13,10 @@ var Sequelize = require('sequelize')
 
 const sequelize = new Sequelize(
     'pint',
-    'basedados_ieyi_user',
-    'fEO8Nn8w39I81eIkPniLIpG2zr3XIMAs',
+    'basedados_v8b5_user',
+    'Uk7Mh0dKAQkFk8BxLiQ9VBdo6QXq260u',
     {
-        host: 'dpg-cq1vnajv2p9s73d9iubg-a.frankfurt-postgres.render.com',
+        host: 'dpg-cqqbvc3v2p9s73b585c0-a.frankfurt-postgres.render.com',
         port: 5432,
         dialect: 'postgres',
         dialectOptions: {

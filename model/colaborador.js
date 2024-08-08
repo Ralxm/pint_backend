@@ -58,7 +58,7 @@ Colaborador.afterUpdate((colaborador, options) => {
         });
 });
 
-Colaborador.afterCreate((colaborador, option) =>{
+/*Colaborador.afterCreate((colaborador, option) =>{
     return ColaboradorCargo.create({
         IDCOLABORADOR: colaborador.IDCOLABORADOR,
         IDCARGO: 2
@@ -66,6 +66,6 @@ Colaborador.afterCreate((colaborador, option) =>{
     .catch(err => {
         throw new Error(err);
     });
-})
+})*/
 
 module.exports = Colaborador;
