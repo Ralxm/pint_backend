@@ -42,8 +42,7 @@ async function colaboradorLogin(req, res) {
                 let token = jwt.sign({
                     EMAIL: req.body.email
                     },
-                    config.jwtSecret,
-                    {expiresIn: '1h'}
+                    config.jwtSecret
                 );
                 user.ULTIMOLOGIN = new Date();
                 let colaboradorCargo = await ColaboradorCargo.findOne({where: {IDCOLABORADOR: user.IDCOLABORADOR}})
