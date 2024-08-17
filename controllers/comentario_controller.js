@@ -11,11 +11,14 @@ controller.comentarioDelete = comentarioDelete;
 controller.comentarioUpdate = comentarioUpdate;
 
 async function comentarioCreate(req, res) {
-    const { IDPOST, IDAPROVACAO, IDCOLABORADOR } = req.body;
+    const { IDPOST, IDAPROVACAO, IDCOLABORADOR, DATACOMENTARIO, AVALIACAO, TEXTO } = req.body;
     const data = await Comentario.create({
         IDPOST: IDPOST,
         IDAPROVACAO: IDAPROVACAO,
         IDCOLABORADOR: IDCOLABORADOR,
+        DATACOMENTARIO: DATACOMENTARIO,
+        AVALIACAO: AVALIACAO,
+        TEXTO: TEXTO
     })
     .then(function(data){
         res.status(200).json({
