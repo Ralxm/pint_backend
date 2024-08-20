@@ -10,11 +10,11 @@ controller.opcaoEscolhaDelete = opcaoEscolhaDelete;
 controller.opcaoEscolhaUpdate = opcaoEscolhaUpdate;
 
 async function opcaoEscolhaCreate(req, res) {
-    const { NOME, TIPOOPCAO, QUESTIONARIO } = req.body;
+    const { NOME, TIPOOPCAO, IDQUESTIONARIO } = req.body;
     const data = await OpcaoEscolha.create({
         NOME: NOME,
         TIPOOPCAO: TIPOOPCAO,
-        QUESTIONARIO: QUESTIONARIO,
+        IDQUESTIONARIO: IDQUESTIONARIO,
     })
     .then(function(data){
         res.status(200).json({
