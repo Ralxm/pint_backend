@@ -51,7 +51,7 @@ async function opcaoEscolhaList(req, res) {
 
 async function opcaoEscolhaGet(req, res) {
     const { id } = req.params;
-    const data = await Evento.findAll({where : {IDOPCAO: id}})
+    const data = await OpcaoEscolha.findAll({where : {IDOPCAO: id}})
     .then(function(data) {
         res.status(200).json({
             success: true,
@@ -105,6 +105,24 @@ async function opcaoEscolhaUpdate(req, res) {
         res.status(500).json({
             success: false,
             message: "Erro ao atualizar a Opção de Escolha",
+            error: error.message
+        });
+    });
+}
+
+controller.opcaoEscolhaFindByQuestionario = async (req, res) => {
+    const { id } = req.params;
+    const data = await OpcaoEscolha.findAll({where : {IDQUESTIONARIO: id}})
+    .then(function(data) {
+        res.status(200).json({
+            success: true,
+            data: data
+        });
+    })
+    .catch(error => {
+        res.status(500).json({
+            success: false,
+            message: "Erro ao encontrar a Opção de Escolha",
             error: error.message
         });
     });
