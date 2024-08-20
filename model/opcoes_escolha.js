@@ -10,7 +10,7 @@ const OpcoesEscolha = sequelize.define('opcoesescolha', {
     },
     NOME: Sequelize.TEXT,
     TIPOOPCAO: Sequelize.INTEGER,
-    QUESTIONARIO: {
+    IDQUESTIONARIO: {
         type: Sequelize.INTEGER,
         references: {
             model: 'questionario',
@@ -23,7 +23,5 @@ const OpcoesEscolha = sequelize.define('opcoesescolha', {
 });
 
 OpcoesEscolha.belongsTo(Questionario, { foreignKey: 'IDQUESTIONARIO' });
-
-
 
 module.exports = OpcoesEscolha;
