@@ -15,6 +15,7 @@ const Evento = sequelize.define('evento', {
             key: 'IDQUESTIONARIO'
         }
     },
+    DATAEVENTO: Sequelize.DATEONLY
 }, {
     timestamps: false,
     tableName: 'evento'

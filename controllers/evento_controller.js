@@ -8,10 +8,11 @@ controller.eventoDelete = eventoDelete;
 controller.eventoUpdate = eventoUpdate;
 
 async function eventoCreate(req, res) {
-    const { IDQUESTIONARIO, IDPOST } = req.body;
+    const { IDQUESTIONARIO, IDPOST, DATAEVENTO } = req.body;
     const data = await Evento.create({
         IDQUESTIONARIO: IDQUESTIONARIO,
         IDPOST: IDPOST,
+        DATAEVENTO: DATAEVENTO
     })
     .then(function(data){
         res.status(200).json({
@@ -86,10 +87,11 @@ async function eventoDelete(req, res) {
 
 async function eventoUpdate(req, res) {
     const { id } = req.params;
-    const { IDQUESTIONARIO, IDPOST } = req.body;
+    const { IDQUESTIONARIO, IDPOST, DATAEVENTO } = req.body;
     const data = await Evento.update({
         IDQUESTIONARIO: IDQUESTIONARIO,
         IDPOST: IDPOST,
+        DATAEVENTO: DATAEVENTO
     }, { where: { IDEVENTO: id }})
     .then(function(data) {
         res.status(200).json({
