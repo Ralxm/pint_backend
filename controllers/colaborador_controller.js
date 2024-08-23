@@ -8,6 +8,9 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../model/database');
 const config = require('../config')
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage }).single('IMAGEM');
+
 controller.colaboradorLogin = colaboradorLogin;
 controller.colaboradorCreate = colaboradorCreate;
 controller.colaboradorList = colaboradorList;
@@ -74,7 +77,7 @@ async function colaboradorLogin(req, res) {
 }
 
 async function colaboradorCreate(req, res) {
-    const { EMAIL, PASSWORDCOLABORADOR, NOME, TELEMOVEL, CIDADE, DATANASCIMENTO, DATAREGISTO, ULTIMOLOGIN } = req.body;
+    const { EMAIL, PASSWORDCOLABORADOR, NOME, TELEMOVEL, CIDADE, DATANASCIMENTO, DATAREGISTO, ULTIMOLOGIN, TIPOCONTA} = req.body;
     const data = await Colaborador.create({
         EMAIL: EMAIL,
         PASSWORDCOLABORADOR: PASSWORDCOLABORADOR,
@@ -84,6 +87,7 @@ async function colaboradorCreate(req, res) {
         DATANASCIMENTO: DATANASCIMENTO,
         DATAREGISTO: DATAREGISTO,
         ULTIMOLOGIN: ULTIMOLOGIN,
+        TIPOCONTA: TIPOCONTA,
     })
     .then(function(data){
         res.status(200).json({
@@ -160,7 +164,7 @@ async function colaboradorDelete(req, res) {
 
 async function colaboradorUpdate(req, res) {
     const { id } = req.params;
-    const { EMAIL, PASSWORDCOLABORADOR, NOME, TELEMOVEL, CIDADE, DATANASCIMENTO, DATAREGISTO, ULTIMOLOGIN } = req.body;
+    const { EMAIL, PASSWORDCOLABORADOR, NOME, TELEMOVEL, CIDADE, DATANASCIMENTO, DATAREGISTO, ULTIMOLOGIN, TIPOCONTA } = req.body;
     const data = await Colaborador.update({
         EMAIL: EMAIL,
         PASSWORDCOLABORADOR: PASSWORDCOLABORADOR,
@@ -170,6 +174,28 @@ async function colaboradorUpdate(req, res) {
         DATANASCIMENTO: DATANASCIMENTO,
         DATAREGISTO: DATAREGISTO,
         ULTIMOLOGIN:ULTIMOLOGIN,
+        TIPOCONTA: TIPOCONTA
+    }, { where: { IDCOLABORADOR: id }})
+    .then(function(data) {
+        res.status(200).json({
+            success: true,
+            data: data,
+            message: "Colaborador atualizado com sucesso!"
+        });
+    })
+    .catch(function(error) {
+        res.status(500).json({
+            success: false,
+            message: "Erro ao atualizar o Colaborador",
+            error: error.message
+        });
+    });
+}
+
+controller.colaboradorSetImagem = async(req, res) =>{
+    const { id } = req.params;
+    const data = await Colaborador.update({
+        IMAGEM: req.file ? req.file.buffer : null
     }, { where: { IDCOLABORADOR: id }})
     .then(function(data) {
         res.status(200).json({

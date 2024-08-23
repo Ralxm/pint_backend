@@ -79,6 +79,56 @@ async function syncDatabase() {
                 NOME: 'Lisboa'
             });
             id = cidade.IDCIDADE;
+            await _Cidade.create({
+                NOME: 'Viseu'
+            });
+            await _Cidade.create({
+                NOME: 'Coimbra'
+            });
+            await _Cidade.create({
+                NOME: 'Tomar'
+            });
+            await _Cidade.create({
+                NOME: 'Vila Real'
+            });
+            await _Cidade.create({
+                NOME: 'Portalegre'
+            });
+            await _Cidade.create({
+                NOME: 'Fundão'
+            });
+        }
+
+        const categoriaCount = await _Categoria.count();
+        if(categoriaCount == 0){
+            await _Categoria.create({
+                NOME: 'Saúde',
+                DESCRICAO: 'Categoria relacionada com todos os aspetos de saúde, incluíndo hospitais, clínicas, veterinários, etc...'
+            });
+            await _Categoria.create({
+                NOME: 'Desporto',
+                DESCRICAO: 'Categoria relacionada com todos os aspetos de desporto, incluíndo futebol, atletismo, natação, etc...'
+            });
+            await _Categoria.create({
+                NOME: 'Formação',
+                DESCRICAO: 'Categoria relacionada com todos os aspetos de formação, incluíndo escolas básicas, secundárias, de condução, etc...'
+            });
+            await _Categoria.create({
+                NOME: 'Gastronomia',
+                DESCRICAO: 'Categoria relacionada com todos os aspetos de gastronomia, incluíndo restaurantes, tascas, cafés, etc...'
+            });
+            await _Categoria.create({
+                NOME: 'Habitação',
+                DESCRICAO: 'Categoria relacionada com todos os aspetos de habitação, incluíndo imobiliárias, casas para arrendar, etc...'
+            });
+            await _Categoria.create({
+                NOME: 'Transportes',
+                DESCRICAO: 'Categoria relacionada com todos os aspetos de transportes, incluíndo públicos, taxis, TVDE, etc...'
+            });
+            await _Categoria.create({
+                NOME: 'Lazer',
+                DESCRICAO: 'Categoria relacionada com todos os aspetos de lazer, incluíndo parques, shoppings, piscinas, etc...'
+            });
         }
         
         let colaborador;
@@ -92,7 +142,8 @@ async function syncDatabase() {
                 CIDADE: id,
                 DATANASCIMENTO: '1990-01-01',
                 DATAREGISTO: new Date(),
-                ULTIMOLOGIN: new Date()
+                ULTIMOLOGIN: new Date(),
+                TIPOCONTA: 1
             });
         }
 
@@ -102,6 +153,10 @@ async function syncDatabase() {
             cargo = await _Cargo.create({
                 NOME: 'Administrador',
                 DESCRICAO: 'Utilizador com permissões totais'
+            })
+            await _Cargo.create({
+                NOME: 'Colaborador',
+                DESCRICAO: 'Utilizador com permissões parciais'
             })
         }
 

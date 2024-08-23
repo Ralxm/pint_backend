@@ -74,7 +74,8 @@ const Post = sequelize.define('post', {
     IMAGEM: {
         type: Sequelize.BLOB('long'),
         allowNull: true
-    }
+    },
+    VIEWS: Sequelize.INTEGER
 },
 {
 timestamps: false,

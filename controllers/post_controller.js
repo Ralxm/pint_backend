@@ -46,7 +46,8 @@ async function postCreate(req, res){
                 TITULO: TITULO,
                 TEXTO: TEXTO,
                 RATING: RATING,
-                IMAGEM: req.file ? req.file.buffer : null
+                IMAGEM: req.file ? req.file.buffer : null,
+                VIEWS: 0
             });
 
             res.status(200).json({
@@ -62,36 +63,6 @@ async function postCreate(req, res){
             });
         }
     });
-    /*const { CIDADE, APROVACAO, COLABORADOR, CATEGORIA, SUBCATEGORIA, ESPACO, EVENTO, DATAPUBLICACAO, DATAULTIMAATIVIDADE, TITULO, TEXTO, RATING, IMAGEM } = req.body;
-    const data = await Post.create({
-        CIDADE: CIDADE,
-        APROVACAO: APROVACAO,
-        COLABORADOR: COLABORADOR,
-        CATEGORIA: CATEGORIA,
-        SUBCATEGORIA: SUBCATEGORIA,
-        ESPACO: ESPACO,
-        EVENTO: EVENTO,
-        DATAPUBLICACAO: DATAPUBLICACAO,
-        DATAULTIMAATIVIDADE: DATAULTIMAATIVIDADE,
-        TITULO: TITULO,
-        TEXTO: TEXTO,
-        RATING: RATING,
-        IMAGEM: IMAGEM,
-    })
-    .then(function(data){
-        res.status(200).json({
-            success: true,
-            message: "Post Criada",
-            data: data
-        })
-    })
-    .catch(error => {
-        res.status(500).json({
-            success: false,
-            message: "Erro a criar o Post",
-            error: error.message
-        })
-    })*/
 }
 
 async function postList(req, res){
@@ -168,6 +139,28 @@ async function postUpdate(req, res){
         TITULO: TITULO,
         TEXTO: TEXTO,
         RATING: RATING,
+    },{ where: { IDPUBLICACAO: id}})
+    .then(function(data) {
+        res.status(200).json
+        ({
+            success: true,
+            data: data,
+            message: "Post atualizado com sucesso!"
+        });
+    })
+    .catch(function(error) {
+        res.status(500).json({
+            success: false,
+            message: "Erro a atualizar o Post",
+            error: error.message
+        });
+    })
+}
+
+controller.increaseViewCount = async (req, res) => {
+    const { id } = req.params;
+    const data = await Post.update({
+        VIEWS: VIEWS + 1
     },{ where: { IDPUBLICACAO: id}})
     .then(function(data) {
         res.status(200).json

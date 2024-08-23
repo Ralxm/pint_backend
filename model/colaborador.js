@@ -30,6 +30,11 @@ const Colaborador = sequelize.define('colaborador', {
     },
     DATAREGISTO: Sequelize.DATEONLY,
     ULTIMOLOGIN: Sequelize.DATEONLY,
+    TIPOCONTA: Sequelize.INTEGER,
+    IMAGEM: {
+        type: Sequelize.BLOB('long'),
+        allowNull: true
+    }
 },
 {
 timestamps: false,
