@@ -1,3 +1,4 @@
+const multer = require('multer');
 var Colaborador = require('../model/colaborador');
 var Cidade = require('../model/cidade');
 var Cargo = require('../model/cargo');
