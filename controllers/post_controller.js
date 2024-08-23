@@ -159,7 +159,7 @@ async function postUpdate(req, res){
 
 controller.increaseViewCount = async (req, res) => {
     const { id } = req.params;
-    const post = Post.findOne({ where: { IDPUBLICACAO: id}})
+    var post = Post.findOne({ where: { IDPUBLICACAO: id}})
     post.VIEWS = post.VIEWS + 1;
     await post.save();
     try{
