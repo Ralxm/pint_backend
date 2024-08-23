@@ -8,6 +8,7 @@ router.get('/list', controller.postList);
 router.get('/get/:id', controller.postGet);
 router.put('/delete/:id', controller.postDelete);
 router.put('/update/:id', controller.postUpdate);
+router.put('/view/:id', controller.increaseViewCount);
 
 router.get('/listByCidade/:id', controller.postListByCidade);
 
