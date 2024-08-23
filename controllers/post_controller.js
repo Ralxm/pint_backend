@@ -159,26 +159,25 @@ async function postUpdate(req, res){
 
 controller.increaseViewCount = async (req, res) => {
     const { id } = req.params;
-    var post = Post.findOne({ where: { IDPUBLICACAO: id}})
-    post.VIEWS = post.VIEWS + 1;
-    await post.save();
-    try{
+    const { VIEWS } = req.body;
+    const data = await Post.update({
+        VIEWS: VIEWS
+    },{ where: { IDPUBLICACAO: id}})
+    .then(function(data) {
         res.status(200).json
         ({
             success: true,
-            message: "Visualização incrementada com sucesso"
-        });
-    }
-    catch(err){
-        res.status(500).json
-        ({
-            success: true,
             data: data,
-            message: "Erro a incrementar visualização"
+            message: "Post atualizado com sucesso!"
         });
-    }
-    
-    
+    })
+    .catch(function(error) {
+        res.status(500).json({
+            success: false,
+            message: "Erro a atualizar o Post",
+            error: error.message
+        });
+    }) 
 }
 
 async function postListByCidade(req, res){
