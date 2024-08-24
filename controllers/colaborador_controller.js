@@ -78,7 +78,7 @@ async function colaboradorLogin(req, res) {
 }
 
 async function colaboradorCreate(req, res) {
-    const { EMAIL, PASSWORDCOLABORADOR, NOME, TELEMOVEL, CIDADE, DATANASCIMENTO, DATAREGISTO, ULTIMOLOGIN, TIPOCONTA} = req.body;
+    const { EMAIL, PASSWORDCOLABORADOR, NOME, TELEMOVEL, CIDADE, DATANASCIMENTO, DATAREGISTO, ULTIMOLOGIN, TIPOCONTA, CARGO} = req.body;
     const data = await Colaborador.create({
         EMAIL: EMAIL,
         PASSWORDCOLABORADOR: PASSWORDCOLABORADOR,
@@ -103,6 +103,10 @@ async function colaboradorCreate(req, res) {
             message: "Erro a criar o Colaborador",
             error: error.message
         })
+    })
+    await ColaboradorCargo.create({
+        IDCARGO: CARGO,
+        IDCOLABORADOR: data.IDCOLABORADOR
     })
 }
 
