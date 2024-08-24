@@ -9,6 +9,7 @@ router.get('/get/:id', controller.postGet);
 router.put('/delete/:id', controller.postDelete);
 router.put('/update/:id', controller.postUpdate);
 router.put('/view/:id', controller.increaseViewCount);
+router.put('/updateRating/:id', controller.setRating);
 
 router.get('/listByCidade/:id', controller.postListByCidade);
 
