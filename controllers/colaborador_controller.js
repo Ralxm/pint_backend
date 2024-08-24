@@ -78,36 +78,38 @@ async function colaboradorLogin(req, res) {
 }
 
 async function colaboradorCreate(req, res) {
-    const { EMAIL, PASSWORDCOLABORADOR, NOME, TELEMOVEL, CIDADE, DATANASCIMENTO, DATAREGISTO, ULTIMOLOGIN, TIPOCONTA, CARGO} = req.body;
-    const data = await Colaborador.create({
-        EMAIL: EMAIL,
-        PASSWORDCOLABORADOR: PASSWORDCOLABORADOR,
-        NOME: NOME,
-        TELEMOVEL:TELEMOVEL,
-        CIDADE: CIDADE,
-        DATANASCIMENTO: DATANASCIMENTO,
-        DATAREGISTO: DATAREGISTO,
-        ULTIMOLOGIN: ULTIMOLOGIN,
-        TIPOCONTA: TIPOCONTA,
-    })
-    .then(function(data){
+    const { EMAIL, PASSWORDCOLABORADOR, NOME, TELEMOVEL, CIDADE, DATANASCIMENTO, DATAREGISTO, ULTIMOLOGIN, TIPOCONTA, CARGO } = req.body;
+
+    try {
+        const data = await Colaborador.create({
+            EMAIL: EMAIL,
+            PASSWORDCOLABORADOR: PASSWORDCOLABORADOR,
+            NOME: NOME,
+            TELEMOVEL: TELEMOVEL,
+            CIDADE: CIDADE,
+            DATANASCIMENTO: DATANASCIMENTO,
+            DATAREGISTO: DATAREGISTO,
+            ULTIMOLOGIN: ULTIMOLOGIN,
+            TIPOCONTA: TIPOCONTA,
+        });
+
+        await ColaboradorCargo.create({
+            IDCARGO: CARGO,
+            IDCOLABORADOR: data.IDCOLABORADOR
+        });
+
         res.status(200).json({
             success: true,
             message: "Colaborador Criado",
             data: data
-        })
-    })
-    .catch(error => {
+        });
+    } catch (error) {
         res.status(500).json({
             success: false,
             message: "Erro a criar o Colaborador",
             error: error.message
-        })
-    })
-    await ColaboradorCargo.create({
-        IDCARGO: CARGO,
-        IDCOLABORADOR: data.IDCOLABORADOR
-    })
+        });
+    }
 }
 
 async function colaboradorList(req, res) {
