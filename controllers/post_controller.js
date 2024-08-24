@@ -200,9 +200,16 @@ async function postListByCidade(req, res){
         where: {CIDADE : id}
     })
     .then(function(data) {
+        const posts = data.map(post => {
+            if (post.IMAGEM) {
+                post.IMAGEM = post.IMAGEM.toString('base64');
+            }
+            return post;
+        });
+
         res.status(200).json({
             success: true,
-            data: data
+            data: posts
         });
     })
     .catch(error => {
