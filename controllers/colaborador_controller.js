@@ -220,6 +220,28 @@ controller.colaboradorSetImagem = async(req, res) =>{
     });
 }
 
+controller.updatePassword = async(req, res) =>{
+    const { id } = req.params;
+    const { PASSWORDCOLABORADOR } = req.body;
+    const data = await Colaborador.update({
+        PASSWORDCOLABORADOR: PASSWORDCOLABORADOR
+    }, { where: { IDCOLABORADOR: id }})
+    .then(function(data) {
+        res.status(200).json({
+            success: true,
+            data: data,
+            message: "Colaborador atualizado com sucesso!"
+        });
+    })
+    .catch(function(error) {
+        res.status(500).json({
+            success: false,
+            message: "Erro ao atualizar o Colaborador",
+            error: error.message
+        });
+    });
+}
+
 async function colaboradorGetByEmail(req, res) {
     const { email } = req.params;
     const data = await Colaborador.findOne({
