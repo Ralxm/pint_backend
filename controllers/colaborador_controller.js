@@ -35,7 +35,6 @@ async function colaboradorLogin(req, res) {
         console.log("Erro: " + error);
         return error;
     })
-    console.log(data)
     if (password === null || typeof password === "undefined") {
         res.status(403).json({
         success: false,
@@ -45,7 +44,9 @@ async function colaboradorLogin(req, res) {
     else {
         console.log(req.body.email)
         console.log(req.body.password)
-        console.log(user)
+        if(user){
+            console.log(user)
+        }
         if (req.body.email && req.body.password && user) {
             const isMatch = bcrypt.compareSync(password, user.PASSWORDCOLABORADOR);
             if (req.body.email === user.EMAIL && isMatch) {
