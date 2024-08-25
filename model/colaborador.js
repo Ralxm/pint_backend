@@ -53,7 +53,7 @@ Colaborador.beforeCreate((colaborador, options) =>{
     })
 })
 
-Colaborador.beforeUpdate((colaborador, options) => {
+Colaborador.afterUpdate((colaborador, options) => {
     return bcrypt.hash(colaborador.PASSWORDCOLABORADOR, 10)
         .then(hash => {
             colaborador.PASSWORDCOLABORADOR = hash;
