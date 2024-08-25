@@ -25,6 +25,8 @@ async function colaboradorLogin(req, res) {
         var email = req.body.email;
         var password = req.body.password;
     }
+    console.log("password: " + password)
+    console.log("email: " + email)
     var user = await Colaborador.findOne({where: { EMAIL: email }})
     .then(function(data){
         return data;
@@ -33,6 +35,7 @@ async function colaboradorLogin(req, res) {
         console.log("Erro: " + error);
         return error;
     })
+    console.log(data)
     if (password === null || typeof password === "undefined") {
         res.status(403).json({
         success: false,
@@ -40,6 +43,9 @@ async function colaboradorLogin(req, res) {
         });
     }
     else {
+        console.log(req.body.email)
+        console.log(req.body.password)
+        console.log(user)
         if (req.body.email && req.body.password && user) {
             const isMatch = bcrypt.compareSync(password, user.PASSWORDCOLABORADOR);
             if (req.body.email === user.EMAIL && isMatch) {
@@ -65,7 +71,7 @@ async function colaboradorLogin(req, res) {
             else {
                 res.status(403).json({
                     success: false,
-                    message: 'Dados deautenticação inválidos.'
+                    message: 'Dados de autenticação inválidos.'
                 });
             }} 
             else {
