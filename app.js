@@ -131,6 +131,120 @@ async function syncDatabase() {
             });
         }
         
+        const subCategoriaCount = await _Subcategoria.count();
+        if(subCategoriaCount == 0){
+            await _Subcategoria.create({
+                NOME: "Hospital",
+                DESCRICAO: "Instituição de saúde que oferece serviços médicos e cirúrgicos para tratamentos diversos.", 
+                IDCATEGORIA: 1
+            });
+            await _Subcategoria.create({
+                NOME: "Clínica",
+                DESCRICAO: "Estabelecimento de saúde especializado em consultas e tratamentos médicos não urgentes.", 
+                IDCATEGORIA: 1
+            });
+            await _Subcategoria.create({
+                NOME: "Veterinário",
+                DESCRICAO: "Profissional que presta cuidados médicos e cirúrgicos a animais de estimação.", 
+                IDCATEGORIA: 1
+            });
+            await _Subcategoria.create({
+                NOME: "Oftalmologista",
+                DESCRICAO: "Especialista em saúde ocular, diagnóstico e tratamento de problemas de visão.", 
+                IDCATEGORIA: 1
+            });
+            await _Subcategoria.create({
+                NOME: "Futebol",
+                DESCRICAO: "Desporto coletivo praticado em campo, envolvendo chutar uma bola para marcar golos.", 
+                IDCATEGORIA: 2
+            });
+            await _Subcategoria.create({
+                NOME: "Padel",
+                DESCRICAO: "Desporto de raquete jogado em duplas, numa quadra fechada e com paredes.", 
+                IDCATEGORIA: 2
+            });
+            await _Subcategoria.create({
+                NOME: "Basquetebol",
+                DESCRICAO: "Desporto coletivo em que o objetivo é lançar a bola num cesto elevado.", 
+                IDCATEGORIA: 2
+            });
+            await _Subcategoria.create({
+                NOME: "Andebol",
+                DESCRICAO: "Desporto coletivo onde os jogadores marcam golos com as mãos numa baliza adversária.", 
+                IDCATEGORIA: 2
+            });
+            await _Subcategoria.create({
+                NOME: "Escola Básica",
+                DESCRICAO: "Instituição de ensino para crianças que frequentam os primeiros anos escolares.", 
+                IDCATEGORIA: 3
+            });
+            await _Subcategoria.create({
+                NOME: "Escola Secundária",
+                DESCRICAO: "Instituição de ensino para adolescentes que estão em fase final da vida escolar.", 
+                IDCATEGORIA: 3
+            });
+            await _Subcategoria.create({
+                NOME: "Centro de Explicações",
+                DESCRICAO: "Local onde alunos recebem apoio educativo complementar para melhorar o desempenho escolar.", 
+                IDCATEGORIA: 3
+            });
+            await _Subcategoria.create({
+                NOME: "Restaurantes",
+                DESCRICAO: "Estabelecimentos que servem refeições completas, com pratos variados e serviços à mesa.", 
+                IDCATEGORIA: 4
+            });
+            await _Subcategoria.create({
+                NOME: "Tascas",
+                DESCRICAO: "Estabelecimentos típicos que oferecem petiscos e bebidas num ambiente descontraído.", 
+                IDCATEGORIA: 4
+            });
+            await _Subcategoria.create({
+                NOME: "Cafés",
+                DESCRICAO: "Espaços sociais que servem bebidas, bolos e refeições ligeiras, ideais para encontros informais.", 
+                IDCATEGORIA: 4
+            });
+            await _Subcategoria.create({
+                NOME: "Imobiliárias",
+                DESCRICAO: "Empresas que oferecem serviços de compra, venda e arrendamento de imóveis.", 
+                IDCATEGORIA: 5
+            });
+            await _Subcategoria.create({
+                NOME: "Quartos para arrendar",
+                DESCRICAO: "Alojamentos disponíveis para arrendar, ideais para estudantes ou trabalhadores.", 
+                IDCATEGORIA: 5
+            });
+            await _Subcategoria.create({
+                NOME: "Casas de férias",
+                DESCRICAO: "Propriedades alugadas temporariamente para férias, oferecendo conforto e comodidade.", 
+                IDCATEGORIA: 5
+            });
+            await _Subcategoria.create({
+                NOME: "Transporte Público",
+                DESCRICAO: "Serviços de transporte acessíveis ao público, como autocarros, metros e comboios.", 
+                IDCATEGORIA: 6
+            });
+            await _Subcategoria.create({
+                NOME: "Boleia",
+                DESCRICAO: "Serviço de transporte partilhado, onde os condutores oferecem lugares disponíveis a outros.", 
+                IDCATEGORIA: 6
+            });
+            await _Subcategoria.create({
+                NOME: "Cinema",
+                DESCRICAO: "Estabelecimento onde são exibidos filmes, proporcionando entretenimento cultural e social.", 
+                IDCATEGORIA: 7
+            });
+            await _Subcategoria.create({
+                NOME: "Parque",
+                DESCRICAO: "Espaço público ao ar livre, ideal para lazer, atividades físicas e convívio familiar.", 
+                IDCATEGORIA: 7
+            });
+            await _Subcategoria.create({
+                NOME: "Shopping",
+                DESCRICAO: "Centro comercial com diversas lojas, restaurantes e serviços num único local.", 
+                IDCATEGORIA: 5
+            });
+        }
+
         let colaborador;
         const colaboradorCount = await _Colaborador.count();
         if(colaboradorCount == 0){
