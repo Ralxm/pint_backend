@@ -8,11 +8,12 @@ controller.eventoDelete = eventoDelete;
 controller.eventoUpdate = eventoUpdate;
 
 async function eventoCreate(req, res) {
-    const { IDQUESTIONARIO, IDPOST, DATAEVENTO } = req.body;
+    const { IDQUESTIONARIO, IDPOST, DATAEVENTO, ESTADO} = req.body;
     const data = await Evento.create({
         IDQUESTIONARIO: IDQUESTIONARIO,
         IDPOST: IDPOST,
-        DATAEVENTO: DATAEVENTO
+        DATAEVENTO: DATAEVENTO,
+        ESTADO: ESTADO
     })
     .then(function(data){
         res.status(200).json({
@@ -87,11 +88,34 @@ async function eventoDelete(req, res) {
 
 async function eventoUpdate(req, res) {
     const { id } = req.params;
-    const { IDQUESTIONARIO, IDPOST, DATAEVENTO } = req.body;
+    const { IDQUESTIONARIO, IDPOST, DATAEVENTO, ESTADO } = req.body;
     const data = await Evento.update({
         IDQUESTIONARIO: IDQUESTIONARIO,
         IDPOST: IDPOST,
-        DATAEVENTO: DATAEVENTO
+        DATAEVENTO: DATAEVENTO,
+        ESTADO: ESTADO
+    }, { where: { IDEVENTO: id }})
+    .then(function(data) {
+        res.status(200).json({
+            success: true,
+            data: data,
+            message: "Evento atualizado com sucesso!"
+        });
+    })
+    .catch(function(error) {
+        res.status(500).json({
+            success: false,
+            message: "Erro ao atualizar o Evento",
+            error: error.message
+        });
+    });
+}
+
+controller.updateEstado = async(req, res) => {
+    const { id } = req.params;
+    const { ESTADO } = req.body;
+    const data = await Evento.update({
+        ESTADO: ESTADO
     }, { where: { IDEVENTO: id }})
     .then(function(data) {
         res.status(200).json({

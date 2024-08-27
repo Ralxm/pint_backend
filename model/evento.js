@@ -15,7 +15,8 @@ const Evento = sequelize.define('evento', {
             key: 'IDQUESTIONARIO'
         }
     },
-    DATAEVENTO: Sequelize.DATEONLY
+    DATAEVENTO: Sequelize.DATEONLY,
+    ESTADO: Sequelize.INTEGER
 }, {
     timestamps: false,
     tableName: 'evento'
