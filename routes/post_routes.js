@@ -10,6 +10,7 @@ router.put('/delete/:id', controller.postDelete);
 router.put('/update/:id', controller.postUpdate);
 router.put('/view/:id', controller.increaseViewCount);
 router.put('/updateRating/:id', controller.setRating);
+router.put('/adminUpdate/:id', controller.adminUpdate);
 
 router.get('/listByCidade/:id', controller.postListByCidade);
 

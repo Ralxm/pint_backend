@@ -216,6 +216,31 @@ controller.setRating = async (req, res) => {
     })
 }
 
+controller.adminUpdate = async (req, res) => {
+    const { id } = req.params;
+    const { CATEGORIA, SUBCATEGORIA, TITULO, TEXTO } = req.body;
+    const data = await Post.update({
+        CATEGORIA: CATEGORIA,
+        SUBCATEGORIA: SUBCATEGORIA,
+        TITULO: TITULO,
+        TEXTO: TEXTO,
+    },{ where: { IDPUBLICACAO: id}})
+    .then(function(data) {
+        res.status(200).json
+        ({
+            success: true,
+            message: "Avaliação do post atualizada com sucesso!"
+        });
+    })
+    .catch(function(error) {
+        res.status(500).json({
+            success: false,
+            message: "Erro a atualizar a avalição do post",
+            error: error.message
+        });
+    })
+}
+
 async function postListByCidade(req, res){
     const { id } = req.params;
     const data = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador], order: ['IDPUBLICACAO'],
