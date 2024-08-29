@@ -5,8 +5,8 @@ const middleware = require('../middleware')
 
 const controller = require('../controllers/mix_controller');
 
-router.get('/list', controller.getEverythingMobile);
-router.get('/mainpage/:idcidade', controller.mainPage);
+router.get('/list', middleware.checkToken, controller.getEverythingMobile);
+router.get('/mainpage/:idcidade', middleware.checkToken, controller.mainPage);
 
 
 module.exports = router;
