@@ -21,10 +21,16 @@ controller.getEverythingMobile = async (req, res) => {
     const voto = await Voto.findAll({attributes: ['IDVOTO'], order: ['IDVOTO']})
     const opcoes_escolha = await Opcoes_escolha.findAll({attributes: ['IDOPCAO'], order: ['IDOPCAO']})
     const questionario = await Questionario.findAll({attributes: ['IDQUESTIONARIO'], order: ['IDQUESTIONARIO']})
+    const posts = post.map(postt => {
+        if (postt.IMAGEM) {
+            postt.IMAGEM = postt.IMAGEM.toString('base64');
+        }
+        return postt;
+    });
     try{
         res.status(200).json({
             success: true,
-            post: post,
+            post: posts,
             categoria: categoria,
             subcategoria: subcategoria,
             cidade: cidade,
@@ -54,12 +60,14 @@ controller.mainPage = async (req, res) => {
     const espaco = await Espaco.findAll({order: ['IDESPACO']})
     const evento = await Evento.findAll({order: ['IDEVENTO']})
     const comentario = await Comentario.findAll({include: [Aprovacao, Colaborador], order: ['IDCOMENTARIO']})
+
     const posts = post.map(postt => {
         if (postt.IMAGEM) {
             postt.IMAGEM = postt.IMAGEM.toString('base64');
         }
-        return posts;
+        return postt;
     });
+
     try{
         res.status(200).json({
             success: true,
