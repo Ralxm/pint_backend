@@ -6,7 +6,6 @@ var Cidade = require('../model/cidade')
 var Subcategoria = require('../model/subcategoria');
 var Categoria = require('../model/categoria')
 var Post = require('../model/post')
-const Categoria = require('../model/categoria')
 const controller = {};
 
 controller.getEverythingMobile = async (req, res) => {
