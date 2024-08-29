@@ -11,6 +11,7 @@ router.put('/update/:id', controller.postUpdate);
 router.put('/view/:id', controller.increaseViewCount);
 router.put('/updateRating/:id', controller.setRating);
 router.post('/adminUpdate/:id', controller.adminUpdate);
+router.get('/topViews', controller.topViews);
 
 router.get('/listByCidade/:id', controller.postListByCidade);
 
