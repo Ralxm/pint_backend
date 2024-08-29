@@ -6,6 +6,10 @@ var Cidade = require('../model/cidade')
 var Subcategoria = require('../model/subcategoria');
 var Categoria = require('../model/categoria')
 var Post = require('../model/post')
+var Espaco = require('../model/espaco')
+var Evento = require('../model/evento')
+var Comentario = require('../model/comentario')
+var Aprovacao = require('../model/aprovacao')
 const controller = {};
 
 controller.getEverythingMobile = async (req, res) => {
@@ -28,6 +32,38 @@ controller.getEverythingMobile = async (req, res) => {
             voto: voto,
             opcoes_escolha: opcoes_escolha,
             questionario: questionario,
+        });
+    }
+    catch(err){
+        res.status(500).json({
+            success: false,
+            message: "Erro a listar",
+            error: err.message
+        });
+    }
+}
+
+controller.mainPage = async (req, res) => {
+    const { idcidade }  = req.params
+    const colaborador = await Colaborador.findAll({include: [Cidade], order: ['IDCOLABORADOR']})
+    const categoria = await Categoria.findAll({order: ['IDCATEGORIA']})
+    const subcategoria = await Subcategoria.findAll({include: [Categoria], order: ['IDSUBCATEGORIA']})
+    const post = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador], order: ['IDPUBLICACAO'],
+        where: {CIDADE : idcidade}
+    })
+    const espaco = await Espaco.findAll({order: ['IDESPACO']})
+    const evento = await Evento.findAll({order: ['IDEVENTO']})
+    const comentario = await Comentario.findAll({include: [Aprovacao, Colaborador], order: ['IDCOMENTARIO']})
+    try{
+        res.status(200).json({
+            success: true,
+            post: post,
+            categoria: categoria,
+            subcategoria: subcategoria,
+            colaborador: colaborador,
+            espaco: espaco,
+            evento: evento,
+            comentario: comentario,
         });
     }
     catch(err){
