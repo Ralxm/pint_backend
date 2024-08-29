@@ -45,7 +45,7 @@ controller.getEverythingMobile = async (req, res) => {
 
 controller.mainPage = async (req, res) => {
     const { idcidade }  = req.params
-    const colaborador = await Colaborador.findAll({include: [Cidade], order: ['IDCOLABORADOR']})
+    const colaborador = await Colaborador.findAll({include: [Cidade], order: ['IDCOLABORADOR'], where: {CIDADE : idcidade}})
     const categoria = await Categoria.findAll({order: ['IDCATEGORIA']})
     const subcategoria = await Subcategoria.findAll({include: [Categoria], order: ['IDSUBCATEGORIA']})
     const post = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador], order: ['IDPUBLICACAO'],
@@ -54,10 +54,16 @@ controller.mainPage = async (req, res) => {
     const espaco = await Espaco.findAll({order: ['IDESPACO']})
     const evento = await Evento.findAll({order: ['IDEVENTO']})
     const comentario = await Comentario.findAll({include: [Aprovacao, Colaborador], order: ['IDCOMENTARIO']})
+    const posts = post.map(postt => {
+        if (postt.IMAGEM) {
+            postt.IMAGEM = postt.IMAGEM.toString('base64');
+        }
+        return posts;
+    });
     try{
         res.status(200).json({
             success: true,
-            post: post,
+            post: posts,
             categoria: categoria,
             subcategoria: subcategoria,
             colaborador: colaborador,
