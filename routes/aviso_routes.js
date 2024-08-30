@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const controller = require('../controllers/post_controller');
+const controller = require('../controllers/aviso_controller');
 
 router.post('/create', controller.avisoCreate);
 router.get('/list', controller.avisoList);
