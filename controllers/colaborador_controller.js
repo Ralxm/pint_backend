@@ -86,7 +86,7 @@ async function colaboradorLogin(req, res) {
 }
 
 async function colaboradorCreate(req, res) {
-    const { EMAIL, PASSWORDCOLABORADOR, NOME, TELEMOVEL, CIDADE, DATANASCIMENTO, DATAREGISTO, ULTIMOLOGIN, TIPOCONTA, CARGO } = req.body;
+    const { EMAIL, PASSWORDCOLABORADOR, NOME, TELEMOVEL, CIDADE, DATANASCIMENTO, DATAREGISTO, ULTIMOLOGIN, TIPOCONTA, CARGO, ATIVO } = req.body;
 
     try {
         const data = await Colaborador.create({
@@ -99,6 +99,7 @@ async function colaboradorCreate(req, res) {
             DATAREGISTO: DATAREGISTO,
             ULTIMOLOGIN: ULTIMOLOGIN,
             TIPOCONTA: TIPOCONTA,
+            ATIVO: ATIVO
         });
 
         await ColaboradorCargo.create({
