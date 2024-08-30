@@ -8,5 +8,6 @@ router.get('/list', controller.eventoList);
 router.get('/get/:id', controller.eventoGet);
 router.put('/delete/:id', controller.eventoDelete);
 router.put('/update/:id', controller.eventoUpdate);
+router.put('/updateEstado/:id', controller.updateEstado);
 
 module.exports = router;
