@@ -230,8 +230,75 @@ controller.colaboradorSetImagem = async(req, res) =>{
 controller.updatePassword = async(req, res) =>{
     const { id } = req.params;
     const { PASSWORDCOLABORADOR } = req.body;
-    const data = await Colaborador.update({
+    const colaborador = await Colaborador.findOne({where: {IDCOLABORADOR : id}});
+    bcrypt.hash(PASSWORDCOLABORADOR, 10)
+    .then(hash =>{
+        if(colaborador.MUDOUPASSWORD == 0){
+            colaborador.MUDOUPASSWORD == 1
+        }
+        colaborador.PASSWORDCOLABORADOR = hash;
+    })
+    .catch(err => {
+        throw new Error();
+    })
+
+    try{
+        res.status(200).json({
+            success: true,
+            message: "Password atualizada com sucesso atualizado com sucesso!"
+        });
+    }catch(err){
+        res.status(500).json({
+            success: false,
+            message: "Erro ao atualizar a password",
+            error: err.message
+        });
+    }
+    /*const data = await Colaborador.update({
         PASSWORDCOLABORADOR: PASSWORDCOLABORADOR
+    }, { where: { IDCOLABORADOR: id }})
+    .then(function(data) {
+        res.status(200).json({
+            success: true,
+            message: "Password atualizada com sucesso atualizado com sucesso!"
+        });
+    })
+    .catch(function(error) {
+        res.status(500).json({
+            success: false,
+            message: "Erro ao atualizar a password",
+            error: error.message
+        });
+    });*/
+}
+
+controller.updateAtivo = async(req, res) =>{
+    const { id } = req.params;
+    const { ATIVO } = req.body;
+    const data = await Colaborador.update({
+        ATIVO: ATIVO
+    }, { where: { IDCOLABORADOR: id }})
+    .then(function(data) {
+        res.status(200).json({
+            success: true,
+            data: data,
+            message: "Colaborador atualizado com sucesso!"
+        });
+    })
+    .catch(function(error) {
+        res.status(500).json({
+            success: false,
+            message: "Erro ao atualizar o Colaborador",
+            error: error.message
+        });
+    });
+}
+
+controller.updateMudouPassowrd = async(req, res) =>{
+    const { id } = req.params;
+    const { MUDOUPASSWORD } = req.body;
+    const data = await Colaborador.update({
+        MUDOUPASSWORD: MUDOUPASSWORD
     }, { where: { IDCOLABORADOR: id }})
     .then(function(data) {
         res.status(200).json({

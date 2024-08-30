@@ -247,6 +247,9 @@ async function syncDatabase() {
         }
 
         let colaborador;
+        let colaborador1;
+        let colaborador2;
+        let colaborador3;
         const colaboradorCount = await _Colaborador.count();
         if(colaboradorCount == 0){
             colaborador = await _Colaborador.create({
@@ -258,7 +261,48 @@ async function syncDatabase() {
                 DATANASCIMENTO: '1990-01-01',
                 DATAREGISTO: new Date(),
                 ULTIMOLOGIN: new Date(),
-                TIPOCONTA: 1
+                TIPOCONTA: 1,
+                ATIVO: 1,
+                MUDOUPASSWORD: 1
+            });
+            colaborador1 = await _Colaborador.create({
+                EMAIL: 'guilherme@softshares.com',
+                PASSWORDCOLABORADOR: "123",
+                NOME: 'Guilherme Soeiro',
+                TELEMOVEL: '123456789',
+                CIDADE: 2,
+                DATANASCIMENTO: '1990-01-01',
+                DATAREGISTO: new Date(),
+                ULTIMOLOGIN: new Date(),
+                TIPOCONTA: 1,
+                ATIVO: 1,
+                MUDOUPASSWORD: 1
+            });
+            colaborador2 = await _Colaborador.create({
+                EMAIL: 'rafael@softshares.com',
+                PASSWORDCOLABORADOR: "123",
+                NOME: 'Rafael Azevedo',
+                TELEMOVEL: '123456789',
+                CIDADE: 2,
+                DATANASCIMENTO: '1990-01-01',
+                DATAREGISTO: new Date(),
+                ULTIMOLOGIN: new Date(),
+                TIPOCONTA: 1,
+                ATIVO: 1,
+                MUDOUPASSWORD: 1
+            });
+            colaborador3 = await _Colaborador.create({
+                EMAIL: 'tiago@softshares.com',
+                PASSWORDCOLABORADOR: "123",
+                NOME: 'Tiago Nunes',
+                TELEMOVEL: '123456789',
+                CIDADE: 2,
+                DATANASCIMENTO: '1990-01-01',
+                DATAREGISTO: new Date(),
+                ULTIMOLOGIN: new Date(),
+                TIPOCONTA: 1,
+                ATIVO: 1,
+                MUDOUPASSWORD: 1
             });
         }
 
@@ -280,6 +324,18 @@ async function syncDatabase() {
             const colaborador_cargo = await _Colaborador_cargo.create({
                 IDCARGO: cargo.IDCARGO,
                 IDCOLABORADOR: colaborador.IDCOLABORADOR
+            })
+            await _Colaborador_cargo.create({
+                IDCARGO: cargo.IDCARGO,
+                IDCOLABORADOR: colaborador1.IDCOLABORADOR
+            })
+            await _Colaborador_cargo.create({
+                IDCARGO: cargo.IDCARGO,
+                IDCOLABORADOR: colaborador2.IDCOLABORADOR
+            })
+            await _Colaborador_cargo.create({
+                IDCARGO: cargo.IDCARGO,
+                IDCOLABORADOR: colaborador3.IDCOLABORADOR
             })
         }
         

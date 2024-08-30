@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('./database');
 const bcrypt = require('bcrypt');
 const Cidade = require('./cidade')
-const ColaboradorCargo = require('./colaborador_cargo')
+const GerirColaborador = require('./gerircolaborador')
 
 const Colaborador = sequelize.define('colaborador', {
     IDCOLABORADOR: {
@@ -34,7 +34,9 @@ const Colaborador = sequelize.define('colaborador', {
     IMAGEM: {
         type: Sequelize.BLOB('long'),
         allowNull: true
-    }
+    },
+    ATIVO: Sequelize.INTEGER,
+    MUDOUPASSWORD: Sequelize.INTEGER,
 },
 {
 timestamps: false,
@@ -42,6 +44,7 @@ tableName: 'colaborador'
 });
 
 Colaborador.belongsTo(Cidade, { foreignKey: 'CIDADE' });
+
 
 Colaborador.beforeCreate((colaborador, options) =>{
     return bcrypt.hash(colaborador.PASSWORDCOLABORADOR, 10)
@@ -53,7 +56,7 @@ Colaborador.beforeCreate((colaborador, options) =>{
     })
 })
 
-Colaborador.afterUpdate((colaborador, options) => {
+/*Colaborador.afterUpdate((colaborador, options) => {
     return bcrypt.hash(colaborador.PASSWORDCOLABORADOR, 10)
         .then(hash => {
             colaborador.PASSWORDCOLABORADOR = hash;
@@ -61,7 +64,7 @@ Colaborador.afterUpdate((colaborador, options) => {
         .catch(err => {
             throw new Error();
         });
-});
+});*/
 
 /*Colaborador.afterCreate((colaborador, option) =>{
     return ColaboradorCargo.create({
