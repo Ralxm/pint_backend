@@ -67,6 +67,7 @@ async function colaboradorLogin(req, res) {
                     id: user.IDCOLABORADOR,
                     cidade: user.CIDADE,
                     cargo: cargo.IDCARGO,
+                    ativo: user.ATIVO,
                 });
             } 
             else {
