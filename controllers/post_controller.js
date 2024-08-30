@@ -242,7 +242,7 @@ controller.adminUpdate = async (req, res) => {
 }
 
 controller.topViews = async (req, res) => {
-    const data = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador], order: [["VIEWS", "DESC"]], limit: 5})
+    const data = await Post.findAll({order: [["VIEWS", "DESC"]], limit: 5, attributes: ['IDPUBLICACAO', 'TITULO', 'VIEWS']})
     .then(function(data) {
         const posts = data.map(post => {
             if (post.IMAGEM) {
