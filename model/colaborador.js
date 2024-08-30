@@ -2,7 +2,6 @@ const Sequelize = require('sequelize');
 const sequelize = require('./database');
 const bcrypt = require('bcrypt');
 const Cidade = require('./cidade')
-const GerirColaborador = require('./gerircolaborador')
 
 const Colaborador = sequelize.define('colaborador', {
     IDCOLABORADOR: {
