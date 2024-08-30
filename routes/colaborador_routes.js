@@ -11,9 +11,9 @@ router.get('/get/:id', middleware.checkToken, controller.colaboradorGet);
 router.put('/delete/:id', middleware.checkToken, controller.colaboradorDelete);
 router.put('/update/:id', middleware.checkToken, controller.colaboradorUpdate);
 router.put('/setImage/:id', middleware.checkToken, controller.colaboradorSetImagem);
-router.put('/updatePassword/:id', middleware.checkToken, controller.updatePassword);
-router.put('/updateAtivo/:id', middleware.checkToken, controller.updateAtivo);
-router.put('/updateMudouPassword/:id', middleware.checkToken, controller.updateMudouPassowrd);
+router.post('/updatePassword/:id', middleware.checkToken, controller.updatePassword);
+router.post('/updateAtivo/:id', middleware.checkToken, controller.updateAtivo);
+router.post('/updateMudouPassword/:id', middleware.checkToken, controller.updateMudouPassowrd);
 
 router.put('/getByEmail/:email', middleware.checkToken, controller.colaboradorGetByEmail);
 
