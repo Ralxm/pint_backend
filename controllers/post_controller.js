@@ -241,6 +241,28 @@ controller.adminUpdate = async (req, res) => {
     })
 }
 
+controller.ultimaAtividadeUpdate = async (req, res) => {
+    const { id } = req.params;
+    const { DATAULTIMAATIVIDADE } = req.body;
+    const data = await Post.update({
+        DATAULTIMAATIVIDADE : DATAULTIMAATIVIDADE
+    },{ where: { IDPUBLICACAO: id}})
+    .then(function(data) {
+        res.status(200).json
+        ({
+            success: true,
+            message: "Avaliação do post atualizada com sucesso!"
+        });
+    })
+    .catch(function(error) {
+        res.status(500).json({
+            success: false,
+            message: "Erro a atualizar a avalição do post",
+            error: error.message
+        });
+    })
+}
+
 controller.topViews = async (req, res) => {
     const data = await Post.findAll({order: [["VIEWS", "DESC"]], limit: 5, attributes: ['IDPUBLICACAO', 'TITULO', 'VIEWS']})
     .then(function(data) {
