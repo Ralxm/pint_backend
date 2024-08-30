@@ -13,7 +13,10 @@ var Aprovacao = require('../model/aprovacao')
 const controller = {};
 
 controller.getEverythingMobile = async (req, res) => {
-    const post = await Post.findAll({attributes: ['IDPUBLICACAO'], order: ['IDPUBLICACAO']})
+    const { idcidade }  = req.params
+    const post = await Post.findAll({attributes: ['IDPUBLICACAO'], order: ['IDPUBLICACAO'],
+        where: {CIDADE : idcidade}
+    })
     const categoria = await Categoria.findAll({attributes: ['IDCATEGORIA'], order: ['IDCATEGORIA']})
     const subcategoria = await Subcategoria.findAll({attributes: ['IDSUBCATEGORIA'], order: ['IDSUBCATEGORIA']})
     const cidade = await Cidade.findAll({attributes: ['IDCIDADE'], order: ['IDCIDADE']})

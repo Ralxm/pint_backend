@@ -5,7 +5,7 @@ const middleware = require('../middleware')
 
 const controller = require('../controllers/mix_controller');
 
-router.get('/list', middleware.checkToken, controller.getEverythingMobile);
+router.get('/list/:idcidade', middleware.checkToken, controller.getEverythingMobile);
 router.get('/mainpage/:idcidade', middleware.checkToken, controller.mainPage);
 
 
