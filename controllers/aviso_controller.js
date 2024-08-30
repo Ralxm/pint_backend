@@ -1,7 +1,6 @@
 var Aviso = require('../model/aviso')
 const controller = {};
 
-
 controller.avisoCreate = async(req, res) => {
     const { COLABORADOR, ADMINISTRADOR, DATAAVISO, TEXTO } = req.body;
     const data = await Aviso.create({
@@ -106,6 +105,5 @@ controller.avisoUpdate = async(req, res) =>{
         });
     })
 }
-
 
 module.exports = controller;
