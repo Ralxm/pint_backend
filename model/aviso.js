@@ -29,4 +29,4 @@ timestamps: false,
 tableName: ' aviso'
 });
 
-module.exports = Post;
+module.exports = Aviso;
