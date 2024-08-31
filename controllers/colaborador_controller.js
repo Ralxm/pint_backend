@@ -236,7 +236,7 @@ controller.updatePassword = async(req, res) =>{
     bcrypt.hash(PASSWORDCOLABORADOR, 10)
     .then(hash =>{
         if(colaborador.MUDOUPASSWORD == 0){
-            colaborador.MUDOUPASSWORD == 1
+            colaborador.MUDOUPASSWORD = 1
         }
         colaborador.PASSWORDCOLABORADOR = hash;
     })
