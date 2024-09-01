@@ -321,7 +321,7 @@ controller.updateMudouPassowrd = async(req, res) =>{
     });
 }
 
-async function colaboradorGetByEmail(req, res) {
+controller.colaboradorGetByEmail = async(req, res) => {
     const { email } = req.params;
     const data = await Colaborador.findOne({
         where: { EMAIL : email }
@@ -329,7 +329,6 @@ async function colaboradorGetByEmail(req, res) {
     .then(function(data) {
         res.status(200).json({
             success: true,
-            data: data
         });
     })
     .catch(error => {
