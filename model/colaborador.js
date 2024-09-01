@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('./database');
 const bcrypt = require('bcrypt');
 const Cidade = require('./cidade')
+const Auditlog = require('./auditlog')
 
 const Colaborador = sequelize.define('colaborador', {
     IDCOLABORADOR: {
@@ -53,6 +54,26 @@ Colaborador.beforeCreate((colaborador, options) =>{
     .catch(err => {
         throw new Error();
     })
+})
+
+Colaborador.afterCreate((colaborador, options) =>{
+    let now = new Date();
+    let dd = now.getDate();
+    let mm = now.getMonth() + 1;
+    let yyyy = now.getFullYear();
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    let today = `${yyyy}-${mm}-${dd}`;
+
+    return Auditlog.create({
+        IDCONTA: colaborador.IDCOLABORADOR,
+        TIPOATIVIDADE: 'Registo',
+        DATA : today,
+        DESCRICAO : colaborador.NOME + '{ID: ' + colaborador.IDCOLABORADOR + '} efetuou registo'
+    })
+    .catch(err => {
+        throw new Error(err);
+    });
 })
 
 /*Colaborador.afterUpdate((colaborador, options) => {

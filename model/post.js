@@ -92,6 +92,14 @@ Post.belongsTo(Evento, { foreignKey: 'EVENTO' });
 
 Post.afterCreate((post, option) =>{
     let tipo;
+    let now = new Date();
+    let dd = now.getDate();
+    let mm = now.getMonth() + 1;
+    let yyyy = now.getFullYear();
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    let today = `${yyyy}-${mm}-${dd}`;
+
     if(post.ESPACO == 1){
         tipo = 'Criação de evento com ID: ' + post.EVENTO;
     }
@@ -101,8 +109,8 @@ Post.afterCreate((post, option) =>{
     return Auditlog.create({
         IDCONTA: post.COLABORADOR,
         TIPOATIVIDADE: tipo,
-        DATA : new Date(),
-        DESCRICAO : 'Utilizador ID: ' + post.COLABORADOR + ' criou uma publicação'
+        DATA : today,
+        DESCRICAO : post.colaborador.NOME + '{ID: ' + post.COLABORADOR + '} criou uma publicação'
     })
     .catch(err => {
         throw new Error(err);

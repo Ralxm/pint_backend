@@ -3,6 +3,7 @@ var Colaborador = require('../model/colaborador');
 var Cidade = require('../model/cidade');
 var Cargo = require('../model/cargo');
 var ColaboradorCargo = require('../model/colaborador_cargo');
+var AuditLog = require('../model/auditlog')
 const controller = {};
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
