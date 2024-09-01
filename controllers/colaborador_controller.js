@@ -19,7 +19,6 @@ controller.colaboradorList = colaboradorList;
 controller.colaboradorGet = colaboradorGet;
 controller.colaboradorDelete = colaboradorDelete;
 controller.colaboradorUpdate = colaboradorUpdate;
-controller.colaboradorGetByEmail = colaboradorGetByEmail;
 
 async function colaboradorLogin(req, res) {
     if(req.body.email && req.body.password){
