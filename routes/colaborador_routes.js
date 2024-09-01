@@ -15,6 +15,6 @@ router.post('/updatePassword/:id', middleware.checkToken, controller.updatePassw
 router.post('/updateAtivo/:id', middleware.checkToken, controller.updateAtivo);
 router.post('/updateMudouPassword/:id', middleware.checkToken, controller.updateMudouPassowrd);
 
-router.put('/getByEmail/:email', middleware.checkToken, controller.colaboradorGetByEmail);
+router.get('/getByEmail/:email', middleware.checkToken, controller.colaboradorGetByEmail);
 
 module.exports = router;
