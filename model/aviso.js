@@ -26,7 +26,7 @@ const Aviso = sequelize.define('aviso', {
 },
 {
 timestamps: false,
-tableName: ' aviso'
+tableName: 'aviso'
 });
 
 module.exports = Aviso;
