@@ -62,7 +62,7 @@ controller.mudarPasswordGet = async(req, res) => {
 controller.mudarPasswordDelete = async(req, res) =>{
     const { id } = req.params;
     const data = await MudarPassword.destroy({
-        where: {IDMUDARPASSWORD: id}
+        where: {EMAIL: id}
     })
     .then(function() {
         res.status(200).json({
