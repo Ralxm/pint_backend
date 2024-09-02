@@ -234,17 +234,15 @@ controller.updatePassword = async(req, res) =>{
     const { id } = req.params;
     const { PASSWORD } = req.body;
     const colaborador = await Colaborador.findOne({where: {IDCOLABORADOR : id}});
-    bcrypt.hash(PASSWORD, 10)
-    .then(hash =>{
-        if(colaborador.MUDOUPASSWORD == 0){
-            colaborador.MUDOUPASSWORD = 1
-        }
-        colaborador.PASSWORDCOLABORADOR = hash;
-    })
-    .catch(err => {
-        throw new Error();
-    })
+    const hash = await bcrypt.hash(PASSWORD, 10);
 
+    if(colaborador.MUDOUPASSWORD == 0){
+        colaborador.MUDOUPASSWORD = 1
+    }
+
+    colaborador.PASSWORDCOLABORADOR = hash;
+    await colaborador.save();
+    
     try{
         res.status(200).json({
             success: true,
