@@ -47,6 +47,8 @@ const _Colaborador_cargo = require('./model/colaborador_cargo');
 const _Voto = require('./model/voto');
 const _Edicao_comentario = require('./model/edicao_comentario');
 const _Edicao_publicacao = require('./model/edicao_publicacao');
+const _Aviso = require('./model/aviso') 
+const _MudarPassword = require('./model/mudarpassword')
 
 app.set('port', process.env.PORT || 3001);
 
@@ -74,6 +76,9 @@ async function syncDatabase() {
         await _Evento.sync();
         await _Post.sync();
         await _Edicao_publicacao.sync();
+        await _Edicao_publicacao.sync();
+        await _Aviso.sync();
+        await _MudarPassword.sync();
 
         let id;
         const cidadeCount = await _Cidade.count();

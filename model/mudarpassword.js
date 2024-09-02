@@ -15,4 +15,4 @@ timestamps: false,
 tableName: 'mudarpassword'
 });
 
-module.exports = Aviso;
+module.exports = MudarPassword;
