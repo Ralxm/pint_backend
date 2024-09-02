@@ -26,6 +26,7 @@ const Voto = require('./routes/voto_routes');
 const RawQuery = require('./routes/rawquery.js')
 const Mix = require('./routes/mix_routes.js')
 const Aviso = require('./routes/aviso_routes.js')
+const MudarPassword = require('./routes/mudarpassword_routes.js')
 
 const _Auditlog = require('./model/auditlog');
 const _Cidade = require('./model/cidade');
@@ -398,6 +399,7 @@ app.use('/voto', Voto);
 app.use('/rawquery', RawQuery);
 app.use('/mix', Mix);
 app.use('/aviso', Aviso);
+app.use('/mudarpassword', MudarPassword);
 
 app.get('/test', (req, res)=>{
     res.send("A funcionar!");
