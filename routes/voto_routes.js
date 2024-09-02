@@ -8,5 +8,6 @@ router.get('/list', controller.votoList);
 router.get('/get/:id', controller.votoGet);
 router.put('/delete/:id', controller.votoDelete);
 router.put('/update/:id', controller.votoUpdate);
+router.get('/getByOpcao/:id', controller.votoGetByOpcao);
 
 module.exports = router;

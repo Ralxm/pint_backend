@@ -113,4 +113,24 @@ async function votoUpdate(req, res){
     })
 }
 
+controller.votoGetByOpcao = async (req, res) => {
+    const { id } = req.params;
+    const data = await Voto.findAll({
+        where: { IDOPCOESESCOLHA: id }
+    })
+    .then(function(data) {
+        res.status(200).json({
+            success: true,
+            data: data
+        });
+    })
+    .catch(error => {
+        res.status(500).json({
+            success: false,
+            message: "Erro a encontrar os votos",
+            error: error
+        });
+    })
+}
+
 module.exports = controller;
