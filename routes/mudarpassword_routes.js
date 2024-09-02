@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const controller = require('../controllers/aviso_controller');
+const controller = require('../controllers/mudarpassword_controller');
 
 router.post('/create', controller.mudarPasswordCreate);
 router.get('/list', controller.mudarPasswordList);
