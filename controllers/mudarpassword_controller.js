@@ -1,4 +1,4 @@
-var MudarPassword = require('../model/aviso')
+var MudarPassword = require('../model/mudarpassword')
 const controller = {};
 
 controller.mudarPasswordCreate = async(req, res) => {
