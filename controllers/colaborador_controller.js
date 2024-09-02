@@ -328,6 +328,7 @@ controller.colaboradorGetByEmail = async(req, res) => {
     .then(function(data) {
         res.status(200).json({
             success: true,
+            data : data.IDCOLABORADOR
         });
     })
     .catch(error => {
