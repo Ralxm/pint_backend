@@ -25,8 +25,6 @@ async function colaboradorLogin(req, res) {
         var email = req.body.email;
         var password = req.body.password;
     }
-    console.log("password: " + password)
-    console.log("email: " + email)
     var user = await Colaborador.findOne({where: { EMAIL: email }})
     .then(function(data){
         return data;
@@ -49,6 +47,7 @@ async function colaboradorLogin(req, res) {
         }
         if (req.body.email && req.body.password && user) {
             const isMatch = bcrypt.compareSync(password, user.PASSWORDCOLABORADOR);
+            console.log( req.body.email + " " + isMatch)
             if (req.body.email === user.EMAIL && isMatch) {
                 let token = jwt.sign({
                     EMAIL: req.body.email
@@ -233,9 +232,9 @@ controller.colaboradorSetImagem = async(req, res) =>{
 
 controller.updatePassword = async(req, res) =>{
     const { id } = req.params;
-    const { PASSWORDCOLABORADOR } = req.body;
+    const { PASSWORD } = req.body;
     const colaborador = await Colaborador.findOne({where: {IDCOLABORADOR : id}});
-    bcrypt.hash(PASSWORDCOLABORADOR, 10)
+    bcrypt.hash(PASSWORD, 10)
     .then(hash =>{
         if(colaborador.MUDOUPASSWORD == 0){
             colaborador.MUDOUPASSWORD = 1
