@@ -5,7 +5,7 @@ const controller = require('../controllers/post_controller');
 
 router.post('/create', controller.postCreate);
 router.get('/list', controller.postList);
-router.get('/listBlob:id', controller.postListBlob);
+router.get('/listBlob/:id', controller.postListBlob);
 router.get('/get/:id', controller.postGet);
 router.put('/delete/:id', controller.postDelete);
 router.put('/update/:id', controller.postUpdate);
