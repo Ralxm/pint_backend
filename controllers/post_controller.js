@@ -89,6 +89,23 @@ async function postList(req, res){
     });
 }
 
+controller.postListBlob = async (req, res) => {
+    const data = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador], order: ['IDPUBLICACAO']})
+    .then(function(data) {
+        res.status(200).json({
+            success: true,
+            data: data
+        });
+    })
+    .catch(error => {
+        res.status(500).json({
+            success: false,
+            message: "Erro a listar os posts",
+            error: error.message
+        });
+    });
+}
+
 async function postGet(req, res){
     const { id } = req.params;
     const data = await Post.findAll({
