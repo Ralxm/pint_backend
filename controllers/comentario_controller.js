@@ -121,7 +121,8 @@ controller.comentariosPorPublicacao = async (req, res) => {
     const { id } = req.params;
     const data = await Comentario.findAll({
         where: { IDPOST: id },
-        include: [Aprovacao, Colaborador]
+        include: [Aprovacao, Colaborador],
+        order: ["DATACOMENTARIO"]
     })
     .then(function(data) {
         res.status(200).json({
