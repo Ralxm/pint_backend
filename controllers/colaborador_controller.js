@@ -40,15 +40,10 @@ async function colaboradorLogin(req, res) {
         });
     }
     else {
-        console.log(req.body.email)
-        console.log(req.body.password)
-        if(user){
-            console.log(user)
-        }
         if (req.body.email && req.body.password && user) {
             const isMatch = bcrypt.compareSync(password, user.PASSWORDCOLABORADOR);
-            console.log( req.body.email + " " + isMatch)
             if (req.body.email === user.EMAIL && isMatch) {
+                var ultimologin = user.ULTIMOLOGIN;
                 let token = jwt.sign({
                     EMAIL: req.body.email
                     },
@@ -67,7 +62,9 @@ async function colaboradorLogin(req, res) {
                     cidade: user.CIDADE,
                     cargo: cargo.IDCARGO,
                     ativo: user.ATIVO,
-                    mudoupassword: user.MUDOUPASSWORD
+                    mudoupassword: user.MUDOUPASSWORD,
+                    nome: user.NOME,
+                    ultimo_login: ultimologin
                 });
             } 
             else {
