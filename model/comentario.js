@@ -25,7 +25,7 @@ const Comentario = sequelize.define('comentario', {
             key: 'IDCOLABORADOR'
         }
     },
-    DATACOMENTARIO: Sequelize.DATE,
+    DATACOMENTARIO: Sequelize.DATEONLY,
     AVALIACAO: Sequelize.FLOAT,
     TEXTO: Sequelize.STRING
 }, {
