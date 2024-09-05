@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const middleware = require('../middleware')
+//middleware.checkToken
 
 const controller = require('../controllers/mix_controller');
 
