@@ -257,6 +257,7 @@ async function syncDatabase() {
         let colaborador1;
         let colaborador2;
         let colaborador3;
+        let colaborador4;
         const colaboradorCount = await _Colaborador.count();
         if(colaboradorCount == 0){
             colaborador = await _Colaborador.create({
@@ -311,6 +312,19 @@ async function syncDatabase() {
                 ATIVO: 1,
                 MUDOUPASSWORD: 1
             });
+            colaborador4 = await _Colaborador.create({
+                EMAIL: 'yan@softshares.com',
+                PASSWORDCOLABORADOR: "123",
+                NOME: 'Yan Santos',
+                TELEMOVEL: '123456789',
+                CIDADE: 2,
+                DATANASCIMENTO: '1990-01-01',
+                DATAREGISTO: new Date(),
+                ULTIMOLOGIN: new Date(),
+                TIPOCONTA: 1,
+                ATIVO: 1,
+                MUDOUPASSWORD: 1
+            });
         }
 
         let cargo;
@@ -343,6 +357,10 @@ async function syncDatabase() {
             await _Colaborador_cargo.create({
                 IDCARGO: cargo.IDCARGO,
                 IDCOLABORADOR: colaborador3.IDCOLABORADOR
+            })
+            await _Colaborador_cargo.create({
+                IDCARGO: cargo.IDCARGO,
+                IDCOLABORADOR: colaborador4.IDCOLABORADOR
             })
         }
         
