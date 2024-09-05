@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const middleware = require('./middleware')
+const middleware = require('../middleware')
 
 const controller = require('../controllers/post_controller');
 
