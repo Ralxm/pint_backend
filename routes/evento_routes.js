@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const middleware = require('../middleware')
 
 const controller = require('../controllers/evento_controller');
 
-router.post('/create', controller.eventoCreate);
-router.get('/list', controller.eventoList);
-router.get('/get/:id', controller.eventoGet);
-router.put('/delete/:id', controller.eventoDelete);
-router.put('/update/:id', controller.eventoUpdate);
-router.post('/updateEstado/:id', controller.updateEstado);
+router.post('/create', middleware.checkToken, controller.eventoCreate);
+router.get('/list', middleware.checkToken, controller.eventoList);
+router.get('/get/:id', middleware.checkToken, controller.eventoGet);
+router.put('/delete/:id', middleware.checkToken, controller.eventoDelete);
+router.put('/update/:id', middleware.checkToken, controller.eventoUpdate);
+router.post('/updateEstado/:id', middleware.checkToken, controller.updateEstado);
 
 module.exports = router;
