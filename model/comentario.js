@@ -27,7 +27,11 @@ const Comentario = sequelize.define('comentario', {
     },
     DATACOMENTARIO: Sequelize.DATEONLY,
     AVALIACAO: Sequelize.FLOAT,
-    TEXTO: Sequelize.STRING
+    TEXTO: Sequelize.STRING,
+    RATING:{
+        type: Sequelize.FLOAT,
+        allowNull: true,
+    }
 }, {
     timestamps: false,
     tableName: 'comentario'

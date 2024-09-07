@@ -10,6 +10,10 @@ const Espaco = sequelize.define('espaco', {
     },
     COORDENADAS: Sequelize.TEXT,
     WEBSITE: Sequelize.TEXT,
+    PRECO:{
+        type: Sequelize.FLOAT,
+        allowNull: true,
+    }
 }, {
     timestamps: false,
     tableName: 'espaco'

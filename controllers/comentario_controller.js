@@ -11,14 +11,15 @@ controller.comentarioDelete = comentarioDelete;
 controller.comentarioUpdate = comentarioUpdate;
 
 async function comentarioCreate(req, res) {
-    const { IDPOST, IDAPROVACAO, IDCOLABORADOR, DATACOMENTARIO, AVALIACAO, TEXTO } = req.body;
+    const { IDPOST, IDAPROVACAO, IDCOLABORADOR, DATACOMENTARIO, AVALIACAO, TEXTO, RATING } = req.body;
     const data = await Comentario.create({
         IDPOST: IDPOST,
         IDAPROVACAO: IDAPROVACAO,
         IDCOLABORADOR: IDCOLABORADOR,
         DATACOMENTARIO: DATACOMENTARIO,
         AVALIACAO: AVALIACAO,
-        TEXTO: TEXTO
+        TEXTO: TEXTO,
+        RATING: RATING
     })
     .then(function(data){
         res.status(200).json({
@@ -95,11 +96,12 @@ async function comentarioDelete(req, res) {
 
 async function comentarioUpdate(req, res) {
     const { id } = req.params;
-    const { IDPOST, IDAPROVACAO, IDCOLABORADOR } = req.body;
+    const { IDPOST, IDAPROVACAO, IDCOLABORADOR, RATING } = req.body;
     const data = await Comentario.update({
         IDPOST: IDPOST,
         IDAPROVACAO: IDAPROVACAO,
         IDCOLABORADOR: IDCOLABORADOR,
+        RATING: RATING,
     }, { where: { IDCOMENTARIO: id }})
     .then(function(data) {
         res.status(200).json({
@@ -134,6 +136,28 @@ controller.comentariosPorPublicacao = async (req, res) => {
         res.status(500).json({
             success: false,
             message: "Erro ao encontrar o Comentario",
+            error: error.message
+        });
+    });
+}
+
+controller.comentarioUpdateRating = async (req, res) => {
+    const { id } = req.params;
+    const {RATING } = req.body;
+    const data = await Comentario.update({
+        RATING: RATING,
+    }, { where: { IDCOMENTARIO: id }})
+    .then(function(data) {
+        res.status(200).json({
+            success: true,
+            data: data,
+            message: "Comentario atualizado com sucesso!"
+        });
+    })
+    .catch(function(error) {
+        res.status(500).json({
+            success: false,
+            message: "Erro ao atualizar o Comentario",
             error: error.message
         });
     });

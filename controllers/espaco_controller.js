@@ -9,11 +9,12 @@ controller.espacoDelete = espacoDelete;
 controller.espacoUpdate = espacoUpdate;
 
 async function espacoCreate(req, res) {
-    const { COORDENADAS, WEBSITE, IDPOST } = req.body;
+    const { COORDENADAS, WEBSITE, IDPOST, PRECO } = req.body;
     const data = await Espaco.create({
         COORDENADAS: COORDENADAS,
         WEBSITE: WEBSITE,
         IDPOST: IDPOST,
+        PRECO: PRECO
     })
     .then(function(data){
         res.status(200).json({
@@ -90,11 +91,12 @@ async function espacoDelete(req, res) {
 
 async function espacoUpdate(req, res) {
     const { id } = req.params;
-    const { COORDENADAS, WEBSITE, IDPOST } = req.body;
+    const { COORDENADAS, WEBSITE, IDPOST, PRECO } = req.body;
     const data = await Espaco.update({
         COORDENADAS: COORDENADAS,
         WEBSITE: WEBSITE,
         IDPOST: IDPOST,
+        PRECO: PRECO
     }, { where: { IDESPACO: id }})
     .then(function(data) {
         res.status(200).json({

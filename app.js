@@ -6,19 +6,15 @@ const middleware = require('./middleware')
 
 const Aprovacao = require('./routes/aprovacao_routes');
 const Auditlog = require('./routes/auditlog_routes');
-const Cargo_permissao = require('./routes/cargo_permissao_routes');
 const Cargo = require('./routes/cargo_routes');
 const Categoria = require('./routes/categoria_routes.js');
 const Cidade = require('./routes/cidade_routes');
 const Colaborador_cargo = require('./routes/colaborador_cargo_routes');
 const Colaborador = require('./routes/colaborador_routes')
 const Comentario = require('./routes/comentario_routes');
-const Edicao_comentario = require('./routes/edicao_comentario_routes');
-const Edicao_publicacao = require('./routes/edicao_publicacao_routes');
 const Espaco = require('./routes/espaco_routes');
 const Evento = require('./routes/evento_routes');
 const Opcoes_escolha = require('./routes/opcoes_escolha_routes');
-const Permissoes = require('./routes/permissoes_routes');
 const Post = require('./routes/post_routes');
 const Questionario = require('./routes/questionario_routes');
 const Subcategoria = require('./routes/subcategoria_routes');
@@ -27,11 +23,11 @@ const RawQuery = require('./routes/rawquery.js')
 const Mix = require('./routes/mix_routes.js')
 const Aviso = require('./routes/aviso_routes.js')
 const MudarPassword = require('./routes/mudarpassword_routes.js')
+const Denuncia = require('./routes/denuncia_routes.js')
 
 const _Auditlog = require('./model/auditlog');
 const _Cidade = require('./model/cidade');
 const _Cargo = require('./model/cargo');
-const _Permissoes = require('./model/permissoes');
 const _Categoria = require('./model/categoria');
 const _Subcategoria = require('./model/subcategoria');
 const _Colaborador = require('./model/colaborador');
@@ -42,13 +38,11 @@ const _Aprovacao = require('./model/aprovacao');
 const _Evento = require('./model/evento');
 const _Post = require('./model/post');
 const _Comentario = require('./model/comentario');
-const _Cargo_permissao = require('./model/cargo_permissao');
 const _Colaborador_cargo = require('./model/colaborador_cargo');
 const _Voto = require('./model/voto');
-const _Edicao_comentario = require('./model/edicao_comentario');
-const _Edicao_publicacao = require('./model/edicao_publicacao');
 const _Aviso = require('./model/aviso') 
 const _MudarPassword = require('./model/mudarpassword')
+const _Denuncia = require('./model/denuncia') 
 
 app.set('port', process.env.PORT || 3001);
 
@@ -61,22 +55,17 @@ async function syncDatabase() {
         await _Cidade.sync();
         await _Espaco.sync();
         await _Cargo.sync();
-        await _Permissoes.sync();
         await _Categoria.sync();
         await _Subcategoria.sync();
         await _Colaborador.sync();
-        await _Cargo_permissao.sync();
         await _Colaborador_cargo.sync();
         await _Aprovacao.sync();
         await _Questionario.sync();
         await _Opcoes_escolha.sync();
         await _Voto.sync();
         await _Comentario.sync(); 
-        await _Edicao_comentario.sync();
         await _Evento.sync();
         await _Post.sync();
-        await _Edicao_publicacao.sync();
-        await _Edicao_publicacao.sync();
         await _Aviso.sync();
         await _MudarPassword.sync();
 
@@ -257,6 +246,7 @@ async function syncDatabase() {
         let colaborador1;
         let colaborador2;
         let colaborador3;
+        let colaborador4;
         const colaboradorCount = await _Colaborador.count();
         if(colaboradorCount == 0){
             colaborador = await _Colaborador.create({
@@ -302,6 +292,19 @@ async function syncDatabase() {
                 EMAIL: 'tiago@softshares.com',
                 PASSWORDCOLABORADOR: "123",
                 NOME: 'Tiago Nunes',
+                TELEMOVEL: '123456789',
+                CIDADE: 2,
+                DATANASCIMENTO: '1990-01-01',
+                DATAREGISTO: new Date(),
+                ULTIMOLOGIN: new Date(),
+                TIPOCONTA: 1,
+                ATIVO: 1,
+                MUDOUPASSWORD: 1
+            });
+            colaborador4 = await _Colaborador.create({
+                EMAIL: 'yan@softshares.com',
+                PASSWORDCOLABORADOR: "123",
+                NOME: 'Yan Santos',
                 TELEMOVEL: '123456789',
                 CIDADE: 2,
                 DATANASCIMENTO: '1990-01-01',
@@ -384,19 +387,15 @@ app.use((req, res, next) => {
 
 app.use('/aprovacao', Aprovacao);
 app.use('/auditlog', Auditlog);
-app.use('/cargo_permissao',Cargo_permissao);
 app.use('/cargo', Cargo);
 app.use('/categoria', Categoria);
 app.use('/cidade', Cidade);
 app.use('/colaborador_cargo', Colaborador_cargo);
 app.use('/colaborador', Colaborador);
 app.use('/comentario', Comentario);
-app.use('/edicao_comentario', Edicao_comentario);
-app.use('/edicao_publicacao', Edicao_publicacao);
 app.use('/espaco', Espaco);
 app.use('/evento', Evento);
 app.use('/opcoes_escolha', Opcoes_escolha);
-app.use('/permissoes', Permissoes);
 app.use('/post', Post);
 app.use('/questionario', Questionario);
 app.use('/subcategoria', Subcategoria);
@@ -405,6 +404,7 @@ app.use('/rawquery', RawQuery);
 app.use('/mix', Mix);
 app.use('/aviso', Aviso);
 app.use('/mudarpassword', MudarPassword);
+app.use('/denuncia', Denuncia);
 
 app.get('/test', (req, res)=>{
     res.send("A funcionar!");

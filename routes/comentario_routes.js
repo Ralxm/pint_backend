@@ -9,5 +9,6 @@ router.get('/get/:id', controller.comentarioGet);
 router.put('/delete/:id', controller.comentarioDelete);
 router.put('/update/:id', controller.comentarioUpdate);
 router.get('/listByPost/:id', controller.comentariosPorPublicacao);
+router.put('/updateRating/:id', controller.comentarioUpdateRating);
 
 module.exports = router;
