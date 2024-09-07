@@ -347,6 +347,10 @@ async function syncDatabase() {
                 IDCARGO: cargo.IDCARGO,
                 IDCOLABORADOR: colaborador3.IDCOLABORADOR
             })
+            await _Colaborador_cargo.create({
+                IDCARGO: cargo.IDCARGO,
+                IDCOLABORADOR: colaborador4.IDCOLABORADOR
+            })
         }
         
         const eventoCount = await _Evento.count();
