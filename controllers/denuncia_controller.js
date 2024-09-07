@@ -81,7 +81,7 @@ controller.denunciaDelete = async(req, res) =>{
     })
 }
 
-controller.avisoUpdate = async(req, res) =>{
+controller.denunciaUpdate = async(req, res) =>{
     const { id } = req.params;
     const { COLABORADOR, COMENTARIO, DATADENUNCIA, MOTIVO } = req.body;
     const data = await Denuncia.update({

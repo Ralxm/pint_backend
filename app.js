@@ -68,6 +68,7 @@ async function syncDatabase() {
         await _Post.sync();
         await _Aviso.sync();
         await _MudarPassword.sync();
+        await _Denuncia.sync();
 
         let id;
         const cidadeCount = await _Cidade.count();
