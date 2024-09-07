@@ -26,4 +26,4 @@ tableName: 'denuncia'
 
 Denuncia.belongsTo(Colaborador, { foreignKey: 'COLABORADOR' });
 
-module.exports = Aviso;
+module.exports = Denuncia;
