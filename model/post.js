@@ -110,7 +110,7 @@ Post.afterCreate((post, option) =>{
         IDCONTA: post.COLABORADOR,
         TIPOATIVIDADE: tipo,
         DATA : today,
-        DESCRICAO : post.colaborador.NOME + '{ID: ' + post.COLABORADOR + '} criou uma publicação'
+        DESCRICAO : 'Colaborador com ID ' + post.COLABORADOR + ' criou uma publicação'
     })
     .catch(err => {
         throw new Error(err);
