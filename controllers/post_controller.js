@@ -59,7 +59,8 @@ async function postCreate(req, res){
             res.status(500).json({
                 success: false,
                 message: "Erro ao criar o post",
-                error: error.message
+                error: error.message,
+                data: data
             });
         }
     });
