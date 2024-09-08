@@ -13,6 +13,4 @@ const Questionario = sequelize.define('questionario', {
     tableName: 'questionario'
 });
 
-
-
 module.exports = Questionario;

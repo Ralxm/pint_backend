@@ -8,10 +8,9 @@ controller.questionarioDelete = questionarioDelete;
 controller.questionarioUpdate = questionarioUpdate;
 
 async function questionarioCreate(req, res){
-    const { NOME, IDEVENTO } = req.body;
+    const { NOME } = req.body;
     const data = await Questionario.create({
         NOME: NOME,
-        IDEVENTO: IDEVENTO,
     })
     .then(function(data){
         res.status(200).json({
@@ -88,10 +87,9 @@ async function questionarioDelete(req, res){
 
 async function questionarioUpdate(req, res){
     const { id } = req.params;
-    const { NOME, IDEVENTO } = req.body;
+    const { NOME } = req.body;
     const data = await Questionario.update({
         NOME: NOME,
-        IDEVENTO: IDEVENTO,
     },{ where: { IDQUESTIONARIO: id}})
     .then(function(data) {
         res.status(200).json
