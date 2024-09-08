@@ -33,6 +33,7 @@ async function postCreate(req, res){
         } = req.body;
 
         try {
+            console.log("OLÁ1")
             const data = await Post.create({
                 CIDADE: CIDADE,
                 APROVACAO: APROVACAO,
@@ -49,6 +50,8 @@ async function postCreate(req, res){
                 IMAGEM: req.file ? req.file.buffer : null,
                 VIEWS: 0
             });
+            console.log("OLÁ2")
+            console.log(data);
 
             res.status(200).json({
                 success: true,
@@ -56,6 +59,7 @@ async function postCreate(req, res){
                 data: data
             });
         } catch (error) {
+            console.log(error);
             res.status(500).json({
                 success: false,
                 message: "Erro ao criar o post",
