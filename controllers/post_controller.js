@@ -19,6 +19,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage }).single('IMAGEM');
 
 async function postCreate(req, res){
+    let data2;
     upload(req, res, async (err) => {
         if (err) {
             return res.status(500).json({
@@ -49,6 +50,7 @@ async function postCreate(req, res){
                 IMAGEM: req.file ? req.file.buffer : null,
                 VIEWS: 0
             });
+            data2 = data;
 
             res.status(200).json({
                 success: true,
@@ -60,7 +62,7 @@ async function postCreate(req, res){
                 success: false,
                 message: "Erro ao criar o post",
                 error: error.message,
-                data: data
+                data: data2
             });
         }
     });
