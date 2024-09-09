@@ -2,12 +2,13 @@ var Denuncia = require('../model/denuncia')
 const controller = {};
 
 controller.denunciaCreate = async(req, res) => {
-    const { COLABORADOR, COMENTARIO, DATADENUNCIA, MOTIVO } = req.body;
+    const { COLABORADOR, COMENTARIO, DATADENUNCIA, MOTIVO, CIDADE } = req.body;
     const data = await Denuncia.create({
         COLABORADOR: COLABORADOR,
         COMENTARIO: COMENTARIO,
         DATADENUNCIA: DATADENUNCIA,
         MOTIVO: MOTIVO,
+        CIDADE: CIDADE
     })
     .then(function(data){
         res.status(200).json({
