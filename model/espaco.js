@@ -11,7 +11,7 @@ const Espaco = sequelize.define('espaco', {
     COORDENADAS: Sequelize.TEXT,
     WEBSITE: Sequelize.TEXT,
     PRECO:{
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: true,
     }
 }, {
