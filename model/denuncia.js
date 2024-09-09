@@ -30,7 +30,7 @@ const Denuncia = sequelize.define('denuncia', {
         type: Sequelize.INTEGER,
         references: {
             model: 'cidade',
-            key: "CIDADE"
+            key: "IDCIDADE"
         }
     },
 },
