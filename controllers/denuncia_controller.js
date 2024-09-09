@@ -42,6 +42,24 @@ controller.denunciaList = async(req, res) => {
     });
 }
 
+controller.denunciaListByCidade = async(req, res) => {
+    const { id } = req.params
+    const data = await Denuncia.findAll({order: ['IDDENUNCIA'], where: {CIDADE: id}})
+    .then(function(data) {
+        res.status(200).json({
+            success: true,
+            data: data
+        });
+    })
+    .catch(error => {
+        res.status(500).json({
+            success: false,
+            message: "Erro a listar as denuncias",
+            error: error.message
+        });
+    });
+}
+
 controller.denunciaGet = async(req, res) => {
     const { id } = req.params;
     const data = await Denuncia.findOne({where: { IDDENUNCIA: id }

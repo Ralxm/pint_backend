@@ -143,7 +143,7 @@ controller.comentariosPorPublicacao = async (req, res) => {
 
 controller.comentarioUpdateRating = async (req, res) => {
     const { id } = req.params;
-    const {RATING } = req.body;
+    const { RATING } = req.body;
     const data = await Comentario.update({
         RATING: RATING,
     }, { where: { IDCOMENTARIO: id }})
