@@ -14,6 +14,7 @@ router.put('/setImage/:id', middleware.checkToken, controller.colaboradorSetImag
 router.post('/updatePassword/:id', controller.updatePassword);
 router.post('/updateAtivo/:id', middleware.checkToken, controller.updateAtivo);
 router.post('/updateMudouPassword/:id', middleware.checkToken, controller.updateMudouPassowrd);
+router.get('/listByCidade/:id', middleware.checkToken, controller.colaboradorListByCidade);
 
 router.get('/getByEmail/:email', controller.colaboradorGetByEmail);
 

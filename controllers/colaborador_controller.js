@@ -334,4 +334,22 @@ controller.colaboradorGetByEmail = async(req, res) => {
     });
 }
 
+controller.colaboradorListByCidade = async (req, res) => {
+    const { id } = req.params;
+    const data = await Colaborador.findAll({include: [Cidade], order: ['IDCOLABORADOR'], where: {CIDADE: id}})
+    .then(function(data) {
+        res.status(200).json({
+            success: true,
+            data: data
+        });
+    })
+    .catch(error => {
+        res.status(500).json({
+            success: false,
+            message: "Erro ao listar os Colaboradores",
+            error: error.message
+        });
+    });
+}
+
 module.exports = controller;
