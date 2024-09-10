@@ -13,7 +13,7 @@ router.put('/view/:id', controller.increaseViewCount);
 router.put('/updateRating/:id', controller.setRating);
 router.post('/adminUpdate/:id', controller.adminUpdate);
 router.post('/ultimaAtividade/:id', controller.ultimaAtividadeUpdate);
-router.get('/topViews', controller.topViews);
+router.get('/topViews/:id', controller.topViews);
 
 router.get('/listByCidade/:id', controller.postListByCidade);
 

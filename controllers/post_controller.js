@@ -284,7 +284,8 @@ controller.ultimaAtividadeUpdate = async (req, res) => {
 }
 
 controller.topViews = async (req, res) => {
-    const data = await Post.findAll({order: [["VIEWS", "DESC"]], limit: 5, attributes: ['IDPUBLICACAO', 'TITULO', 'VIEWS']})
+    const { id } = req.params;
+    const data = await Post.findAll({order: [["VIEWS", "DESC"]], limit: 5, attributes: ['IDPUBLICACAO', 'TITULO', 'VIEWS'], where: {CIDADE: id}})
     .then(function(data) {
         const posts = data.map(post => {
             if (post.IMAGEM) {
