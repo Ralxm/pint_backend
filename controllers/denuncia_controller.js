@@ -1,4 +1,6 @@
 var Denuncia = require('../model/denuncia')
+const Colaborador = require('../model/colaborador'); 
+const Comentario = require('../model/comentario')
 const controller = {};
 
 controller.denunciaCreate = async(req, res) => {
@@ -45,7 +47,7 @@ controller.denunciaList = async(req, res) => {
 
 controller.denunciaListByCidade = async(req, res) => {
     const { id } = req.params
-    const data = await Denuncia.findAll({order: ['IDDENUNCIA'], where: {CIDADE: id}})
+    const data = await Denuncia.findAll({include: [Colaborador, Comentario], order: ['IDDENUNCIA'], where: {CIDADE: id}})
     .then(function(data) {
         res.status(200).json({
             success: true,
