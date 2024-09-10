@@ -46,6 +46,38 @@ const _Denuncia = require('./model/denuncia')
 
 app.set('port', process.env.PORT || 3001);
 
+async function syncDatabase() {
+    try {
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.');
+        
+        await _Auditlog.sync();
+        await _Cidade.sync();
+        await _Espaco.sync();
+        await _Cargo.sync();
+        await _Categoria.sync();
+        await _Subcategoria.sync();
+        await _Colaborador.sync();
+        await _Colaborador_cargo.sync();
+        await _Aprovacao.sync();
+        await _Questionario.sync();
+        await _Opcoes_escolha.sync();
+        await _Voto.sync();
+        await _Comentario.sync(); 
+        await _Evento.sync();
+        await _Post.sync();
+        await _Aviso.sync();
+        await _MudarPassword.sync();
+        await _Denuncia.sync();
+
+        createStuffOnDatabase();
+
+        console.log('All models were synchronized successfully.');
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+    }
+}
+
 async function createStuffOnDatabase(){
     let id;
     const cidadeCount = await _Cidade.count();
@@ -225,6 +257,23 @@ async function createStuffOnDatabase(){
     let colaborador2;
     let colaborador3;
     let colaborador4;
+
+    let softshares1;
+    let softshares2;
+    let softshares3;
+    let softshares4;
+    let softshares5;
+    let softshares6;
+    let softshares7;
+
+    let admin1;
+    let admin2;
+    let admin3;
+    let admin4;
+    let admin5;
+    let admin6;
+    let admin7;
+
     const colaboradorCount = await _Colaborador.count();
     if(colaboradorCount == 0){
         colaborador = await _Colaborador.create({
@@ -292,16 +341,201 @@ async function createStuffOnDatabase(){
             ATIVO: 1,
             MUDOUPASSWORD: 1
         });
+        //--------------------------------------------------------------------------------------------
+        admin1 = await _Colaborador.create({
+            EMAIL: 'viseu@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Admin Viseu',
+            TELEMOVEL: '123456789',
+            CIDADE: 2,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
+        admin2 = await _Colaborador.create({
+            EMAIL: 'lisboa@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Admin Lisboa',
+            TELEMOVEL: '123456789',
+            CIDADE: 1,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
+        admin3 = await _Colaborador.create({
+            EMAIL: 'coimbra@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Admin Coimbra',
+            TELEMOVEL: '123456789',
+            CIDADE: 3,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
+        admin4 = await _Colaborador.create({
+            EMAIL: 'tomar@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Admin Tomar',
+            TELEMOVEL: '123456789',
+            CIDADE: 4,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
+        admin5 = await _Colaborador.create({
+            EMAIL: 'vilareal@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Admin Vila Real',
+            TELEMOVEL: '123456789',
+            CIDADE: 5,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
+        admin6 = await _Colaborador.create({
+            EMAIL: 'portalegre@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Admin Portalegre',
+            TELEMOVEL: '123456789',
+            CIDADE: 6,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
+        admin7 = await _Colaborador.create({
+            EMAIL: 'fundao@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Admin Fundão',
+            TELEMOVEL: '123456789',
+            CIDADE: 7,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
+        //-----------------------------------------------------------------------------------------------------------------
+        softshares1 = await _Colaborador.create({
+            EMAIL: 'colaboradorviseu@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Colaborador Viseu',
+            TELEMOVEL: '123456789',
+            CIDADE: 2,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
+        softshares2 = await _Colaborador.create({
+            EMAIL: 'colaboradorlisboa@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Colaborador Lisboa',
+            TELEMOVEL: '123456789',
+            CIDADE: 1,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
+        softshares3 = await _Colaborador.create({
+            EMAIL: 'colaboradorcoimbra@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Colaborador Coimbra',
+            TELEMOVEL: '123456789',
+            CIDADE: 3,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
+        softshares4 = await _Colaborador.create({
+            EMAIL: 'colaboradortomar@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Colaborador Tomar',
+            TELEMOVEL: '123456789',
+            CIDADE: 4,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
+        softshares5 = await _Colaborador.create({
+            EMAIL: 'colaboradorvilareal@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Colaborador Vila Real',
+            TELEMOVEL: '123456789',
+            CIDADE: 5,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
+        softshares6 = await _Colaborador.create({
+            EMAIL: 'colaboradorportalegre@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Colaborador Portalegre',
+            TELEMOVEL: '123456789',
+            CIDADE: 6,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
+        softshares7 = await _Colaborador.create({
+            EMAIL: 'colaboradorfundao@softshares.com',
+            PASSWORDCOLABORADOR: "123",
+            NOME: 'Colaborador Fundão',
+            TELEMOVEL: '123456789',
+            CIDADE: 7,
+            DATANASCIMENTO: '1990-01-01',
+            DATAREGISTO: new Date(),
+            ULTIMOLOGIN: new Date(),
+            TIPOCONTA: 1,
+            ATIVO: 1,
+            MUDOUPASSWORD: 1
+        });
     }
 
     let cargo;
+    let col;
     const cargoCount = await _Cargo.count();
     if(cargoCount == 0){
         cargo = await _Cargo.create({
             NOME: 'Administrador',
             DESCRICAO: 'Utilizador com permissões totais'
         })
-        await _Cargo.create({
+        col = await _Cargo.create({
             NOME: 'Colaborador',
             DESCRICAO: 'Utilizador com permissões parciais'
         })
@@ -329,6 +563,64 @@ async function createStuffOnDatabase(){
             IDCARGO: cargo.IDCARGO,
             IDCOLABORADOR: colaborador4.IDCOLABORADOR
         })
+
+        await _Colaborador_cargo.create({
+            IDCARGO: cargo.IDCARGO,
+            IDCOLABORADOR: admin1.IDCOLABORADOR
+        })
+        await _Colaborador_cargo.create({
+            IDCARGO: cargo.IDCARGO,
+            IDCOLABORADOR: admin2.IDCOLABORADOR
+        })
+        await _Colaborador_cargo.create({
+            IDCARGO: cargo.IDCARGO,
+            IDCOLABORADOR: admin3.IDCOLABORADOR
+        })
+        await _Colaborador_cargo.create({
+            IDCARGO: cargo.IDCARGO,
+            IDCOLABORADOR: admin4.IDCOLABORADOR
+        })
+        await _Colaborador_cargo.create({
+            IDCARGO: cargo.IDCARGO,
+            IDCOLABORADOR: admin5.IDCOLABORADOR
+        })
+        await _Colaborador_cargo.create({
+            IDCARGO: cargo.IDCARGO,
+            IDCOLABORADOR: admin6.IDCOLABORADOR
+        })
+        await _Colaborador_cargo.create({
+            IDCARGO: cargo.IDCARGO,
+            IDCOLABORADOR: admin7.IDCOLABORADOR
+        })
+
+        await _Colaborador_cargo.create({
+            IDCARGO: col.IDCARGO,
+            IDCOLABORADOR: softshares1.IDCOLABORADOR
+        })
+        await _Colaborador_cargo.create({
+            IDCARGO: col.IDCARGO,
+            IDCOLABORADOR: softshares2.IDCOLABORADOR
+        })
+        await _Colaborador_cargo.create({
+            IDCARGO: col.IDCARGO,
+            IDCOLABORADOR: softshares3.IDCOLABORADOR
+        })
+        await _Colaborador_cargo.create({
+            IDCARGO: col.IDCARGO,
+            IDCOLABORADOR: softshares4.IDCOLABORADOR
+        })
+        await _Colaborador_cargo.create({
+            IDCARGO: col.IDCARGO,
+            IDCOLABORADOR: softshares5.IDCOLABORADOR
+        })
+        await _Colaborador_cargo.create({
+            IDCARGO: col.IDCARGO,
+            IDCOLABORADOR: softshares6.IDCOLABORADOR
+        })
+        await _Colaborador_cargo.create({
+            IDCARGO: col.IDCARGO,
+            IDCOLABORADOR: softshares7.IDCOLABORADOR
+        })
     }
     
     const eventoCount = await _Evento.count();
@@ -347,38 +639,6 @@ async function createStuffOnDatabase(){
             COORDENADAS: 'teste',
             WEBSITE: 'teste'
         });
-    }
-}
-
-async function syncDatabase() {
-    try {
-        await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
-        
-        await _Auditlog.sync();
-        await _Cidade.sync();
-        await _Espaco.sync();
-        await _Cargo.sync();
-        await _Categoria.sync();
-        await _Subcategoria.sync();
-        await _Colaborador.sync();
-        await _Colaborador_cargo.sync();
-        await _Aprovacao.sync();
-        await _Questionario.sync();
-        await _Opcoes_escolha.sync();
-        await _Voto.sync();
-        await _Comentario.sync(); 
-        await _Evento.sync();
-        await _Post.sync();
-        await _Aviso.sync();
-        await _MudarPassword.sync();
-        await _Denuncia.sync();
-
-        createStuffOnDatabase();
-
-        console.log('All models were synchronized successfully.');
-    } catch (error) {
-        console.error('Unable to connect to the database:', error);
     }
 }
 
