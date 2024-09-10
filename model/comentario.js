@@ -29,7 +29,7 @@ const Comentario = sequelize.define('comentario', {
     AVALIACAO: Sequelize.FLOAT,
     TEXTO: Sequelize.STRING,
     RATING:{
-        type: Sequelize.FLOAT,
+        type: Sequelize.INTEGER,
         allowNull: true,
     }
 }, {
