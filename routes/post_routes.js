@@ -17,6 +17,6 @@ router.get('/topViews', controller.topViews);
 
 router.get('/listByCidade/:id', controller.postListByCidade);
 
-router.get('/listByEvento/:id', controller.postListByCidade);
+router.get('/listByEvento/:id', controller.postListByEvento);
 
 module.exports = router;
