@@ -334,4 +334,31 @@ async function postListByCidade(req, res){
     });
 }
 
+controller.postListByEvento = async (req, res) => {
+    const { id } = req.params;
+    const data = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador], order: ['IDPUBLICACAO'],
+        where: {EVENTO : id}
+    })
+    .then(function(data) {
+        const posts = data.map(post => {
+            if (post.IMAGEM) {
+                post.IMAGEM = post.IMAGEM.toString('base64');
+            }
+            return post;
+        });
+
+        res.status(200).json({
+            success: true,
+            data: posts
+        });
+    })
+    .catch(error => {
+        res.status(500).json({
+            success: false,
+            message: "Erro a listar os posts",
+            error: error.message
+        });
+    });
+}
+
 module.exports = controller;

@@ -9,5 +9,6 @@ router.get('/get/:id', controller.votoGet);
 router.put('/delete/:id', controller.votoDelete);
 router.put('/update/:id', controller.votoUpdate);
 router.get('/getByOpcao/:id', controller.votoGetByOpcao);
+router.get('/getByColaborador/:id', controller.votoGetByColaborador);
 
 module.exports = router;
