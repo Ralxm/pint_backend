@@ -93,7 +93,7 @@ async function postList(req, res){
 controller.postListBlob = async (req, res) => {
     const { id } = req.params;
     const data = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador]},
-        { where: { CIDADE: id}}, {order: [['DATAPUBLICACAO', 'ASC']]})
+        { where: { CIDADE: id}}, {order: [['DATAPUBLICACAO', 'DESC']]})
     .then(function(data) {
         res.status(200).json({
             success: true,
