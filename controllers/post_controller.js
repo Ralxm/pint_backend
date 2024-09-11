@@ -92,7 +92,7 @@ async function postList(req, res){
 
 controller.postListBlob = async (req, res) => {
     const { id } = req.params;
-    const data = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador], order: ['DATAPUBLICACAO']},
+    const data = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador], order: [['DATAPUBLICACAO'], ['ASC']]},
         { where: { CIDADE: id}})
     .then(function(data) {
         res.status(200).json({
@@ -310,7 +310,7 @@ controller.topViews = async (req, res) => {
 
 async function postListByCidade(req, res){
     const { id } = req.params;
-    const data = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador], order: ['DATAPUBLICACAO'],
+    const data = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador], order: [['DATAPUBLICACAO'], ['ASC']],
         where: {CIDADE : id}
     })
     .then(function(data) {
