@@ -310,7 +310,7 @@ controller.topViews = async (req, res) => {
 
 async function postListByCidade(req, res){
     const { id } = req.params;
-    const data = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador], order: ['IDPUBLICACAO'],
+    const data = await Post.findAll({include: [Evento, Espaco, Categoria, Subcategoria, Aprovacao, Cidade, Colaborador], order: ['DATAPUBLICACAO'],
         where: {CIDADE : id}
     })
     .then(function(data) {
