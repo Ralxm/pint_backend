@@ -127,4 +127,24 @@ controller.denunciaUpdate = async(req, res) =>{
     })
 }
 
+controller.denunciaDeleteByComentario = async(req, res) =>{
+    const { id } = req.params;
+    const data = await Denuncia.destroy({
+        where: {COMENTARIO: id}
+    })
+    .then(function() {
+        res.status(200).json({
+            success: true,
+            message: "Aviso Apagado"
+        })
+    })
+    .catch(error => {
+        res.status(500).json({
+            success: false,
+            message: "Erro a apagar a denuncia",
+            error: error.message
+        });
+    })
+}
+
 module.exports = controller;

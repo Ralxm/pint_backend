@@ -9,5 +9,6 @@ router.get('/get/:id', controller.denunciaGet);
 router.put('/delete/:id', controller.denunciaDelete);
 router.put('/update/:id', controller.denunciaUpdate);
 router.get('/listByCidade/:id', controller.denunciaListByCidade);
+router.put('/deleteByComentario/:id', controller.denunciaDeleteByComentario);
 
 module.exports = router;
