@@ -16,7 +16,7 @@ const sequelize = new Sequelize(
     'pintbd_jmg1_user',
     'ZevXzT9n34zg3BzqDAx0oWuAFwMm3xcH',
     {
-        host: 'dpg-cr49n0bv2p9s73cordu0-a.frankfurt-postgres.render.com',
+        host: 'postgresql://mhr:hMiY0tKO3SJWW2k5vSZ1mGDngZcN0Yu6@dpg-d102sammcj7s7385buf0-a.frankfurt-postgres.render.com/mhr.frankfurt-postgres.render.com',
         port: 5432,
         dialect: 'postgres',
         dialectOptions: {
